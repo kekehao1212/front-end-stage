@@ -1,0 +1,36 @@
+{
+  "name": "ionic",
+  "version": "1.0.0",
+  "codename": "uranium-unicorn",
+  "homepage": "https://github.com/driftyco/ionic",
+  "authors": [
+    "Max Lynch <max@drifty.com>",
+    "Adam Bradley <adam@drifty.com>",
+    "Ben Sperry <ben@drifty.com>"
+  ],
+  "description": "Advanced HTML5 hybrid mobile app development framework.",
+  "main": [
+    "css/ionic.css",
+    "fonts/*",
+    "js/ionic.js",
+    "js/ionic-angular.js"
+  ],
+  "keywords": [
+    "angularjs",
+    "angular"
+  ],
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "angular": "1.5.3",
+    "angular-animate": "1.5.3",
+    "angular-sanitize": "1.5.3",
+    "angular-ui-router": "0.2.18",
+    "jquery": "1.10.2",
+    "nprogress": "~0.2.0",
+    "bootstrap-daterangepicker": "~2.1.24"
+  },
+  "devDependencies": {
+    "bootstrap": "3"
+  }
+}

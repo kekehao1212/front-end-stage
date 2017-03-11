@@ -1,0 +1,32 @@
+@nav-bg-color: #343535;
+@nav-menu-bg-color: #4a4a4a;
+@nav-color: #cdbfe3;
+@nav-hover-color: red;
+@nav-hover-bg-color: #343535;
+
+.bei-fu {
+	.ics-layout {
+		.nav-left {
+			background-color: @nav-bg-color;
+		}
+		.ics-navigation {
+			.nav-detail {
+				background-color: @nav-menu-bg-color;
+				.third a:hover {
+					//color: @nav-hover-color;
+				}
+			}
+			.nav > .menu {
+				//color: @nav-color;
+				&:hover {
+					//color: @nav-color;
+					background-color: @nav-menu-bg-color;//@nav-hover-bg-color;
+				}
+			}
+		}
+		.nav-right {
+		}
+		.layout-view {
+		}
+	}
+}

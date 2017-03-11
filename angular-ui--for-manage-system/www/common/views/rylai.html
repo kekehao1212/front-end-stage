@@ -1,0 +1,251 @@
+    <div class="container-fluid">
+      <div class="query-container">
+        <div class='query-title'>
+           <span  class='title'>查询信息</span>
+        </div>
+        <div class="ice-row ice-query">
+          <div class="ice-column">
+            <ice-date-picker id='testnew' start-date="pagination.start" end-date="pagination.end" time-picker='true' date-limit='10' max-date='2016-08-30' min-date='2016/08/16' check-date='pagination.checkDate' format="yyyy-MM-dd hh:mm:ss">
+              时间标题
+              <br/>    
+            </ice-date-picker>
+          </div>
+          <div class="ice-column">
+            <ice-date-picker id='testnew' start-date="pagination.start" end-date="pagination.end" time-picker='true' date-limit='10' max-date='2016-08-30' min-date='2016/08/16' check-date='pagination.checkDate' format="yyyy-MM-dd hh:mm:ss">
+              时间标题
+              <br/>    
+            </ice-date-picker>
+          </div>
+        </div>
+        <div class="ice-row ice-query">
+          <div class="ice-column">
+            <ice-date-picker id='testnew' start-date="pagination.start" end-date="pagination.end" time-picker='true' date-limit='10' max-date='2016-08-30' min-date='2016/08/16' check-date='pagination.checkDate' format="yyyy-MM-dd hh:mm:ss">
+              时间标题
+              <br/>    
+            </ice-date-picker>
+          </div>
+          <div class="ice-column">
+            <ice-label-input label='查询标题' value='name' placeholder='' />    
+          </div>
+          <div class="ice-column">
+            <ice-label-select label='查询标题' option='select2.option' value='select2.model' />    
+          </div>
+        </div>
+        <div class="ice-row  ice-query">
+          <div class="ice-column">
+            <ice-label-input label='查询标题' value='name' placeholder='' />    
+          </div>
+          <div class="ice-column">
+            <ice-label-select label='查询标题' option='select2.option' value='select2.model' />    
+          </div>
+
+          <div class="ice-column">
+            <ice-label-select label='查询标题' option='select2.option' value='select2.model' />    
+          </div>
+          <div class="ice-column">
+            <ice-label-input label='查询标题' value='name' placeholder='' />    
+          </div>
+        </div>
+
+        <div class="ice-row ice-query">
+          <div class="ice-column">
+            <ice-date-picker id='testnew' start-date="pagination.start" end-date="pagination.end" time-picker='true' date-limit='10' max-date='2016-08-30' min-date='2016/08/16' check-date='pagination.checkDate' format="yyyy-MM-dd hh:mm:ss">
+              时间标题
+              <br/>    
+            </ice-date-picker>
+          </div>
+          <div class="ice-column">输入的时间check是否valid结果{{pagination.checkDate}}</div>
+        </div>
+        <div class="ice-row ice-query">
+          <div class="ice-column">
+            <ice-date-picker start-date="start001" single=true max-date='2016/08/16' check-date='checkDate1' format="yyyy MM dd">
+              时间标题
+              <br/>    
+            </ice-date-picker>
+          </div>
+          <div class="ice-column">输入的时间check是否valid结果{{pagination.checkDate1}}</div>
+          <div class="ice-column">
+            <ice-button text='查询' hanle-click='btnQueryFn()'/>    
+          </div>
+        </div>
+      </div>
+      <ice-head title="实例"></ice-head>
+      {{pagination.checkDate}}
+      <div class="row">
+        <div class="col">
+          <table class="table  table-bordered table-striped ice-query">
+            <tr>
+              <td colspan="4">
+                <div class="ice-query-form">
+                  <ice-date-picker 
+                      id='testnew'
+                      start-date="pagination.start" 
+                      end-date="pagination.end" 
+                      time-picker='true'
+                      single='false'
+                      date-limit='10'
+                      max-date='2016-08-30'
+                      min-date='2016-08-16'
+                      check-date='pagination.checkDate'
+                      format="yyyy-MM-dd hh:mm:ss">
+                    时间标题
+                    <br/>    
+                  </ice-date-picker>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <div class="ice-query-form">
+                  <ice-date-picker 
+                      id='testnew2'
+                      start-date="start001" 
+                      end-date="end002" 
+                      time-picker='false'
+                      single='true'
+                      date-limit='10'
+                      max-date='2016-08-30'
+                      min-date='2016-08-16'
+                      check-date='pagination.checkDate1'
+                      format="yyyy/MM/dd">
+                    时间标题
+                    <br/>    
+                  </ice-date-picker>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                ice-date-picker
+                <br/>    
+                默认展示时间段选择器 {{pagination.start}} - {{pagination.end}}
+                <br/>    
+                错误提示：{{pagination.checkDate.message}}
+                  参数
+                <br/>    
+                id: 唯一必需
+                <br/>    
+                start-date="datetime10"
+                <br/>    
+                end-date="datetime11"
+                <br/>    
+                time-picker 是否包含时间true/false
+                <br/>    
+                format -- 时间格式；
+                <br/>    
+                min-date 最小时间；
+                <br/>    
+                max-date --- 最大时间；
+                <br/>    
+                date-limit ---时间跨度 单位是 day 天数
+                <br/>    
+                check-date：时间是否合法,返回值{result:true/false,message:""}
+                <br/>    
+                Note: 可手动检查日期格式，引入'datePicker'服务，方法datePicker.checkDate($scope.startDate, $scope.endDate, $scope.minDate,$scope.maxDate,$scope.dateLimit)
+              </td>
+            </tr>
+            <tr>
+              <td >
+                <ice-label-input label='查询标题' value='name' placeholder='' />    
+              </td>
+              <td >
+                <ice-label-select   label='查询标题' option='select2.option' value='select2.model' />    
+              </td>
+            </tr>
+            <tr>
+              <td >
+                <ice-permission value='vpalact.act.query' out='permission.test1'>
+                  <ice-button text='有权限查询' hanle-click='queryFn()'/>    
+                </ice-permission>
+              </td>
+              <td >
+                权限控制
+                <br/>    
+                参数： value 权限值  = {{"1." + permission.test1 + " 2." +permission.test1}}
+                <br/>
+                out : 是否有权限， 必填， 返回true/false 
+              </td>
+            </tr>
+            <tr>
+              <td >
+
+                <ice-switcher
+                    value="switcher.value"
+                    disabled = ''
+                    change="switcher.change"
+                    label-on="on"
+                    label-off="off"></ice-switcher>
+              </td>
+              <td>
+                状态切换按钮：{{switcher.value}}
+                <br/>    
+                参数 value ： ng-model
+                <br/>    
+                disabled：禁止操作
+                <br/>    
+                change：变化事件
+                <br/>    
+                label-on： 按钮标题
+                <br/>    
+                label-off：按钮标题
+                <br/>    
+              </td>
+            </tr>
+            <tr>
+              <td >
+                <ice-button text='摸态框' hanle-click='showModal()'/>    
+              </td>
+              <td>
+                摸态框 ics-modal
+                <br/>    
+                参数
+                <br/>    
+                id: 摸态框标签id 必选
+                <br/>    
+                title：头部名称 必选
+                <br/>    
+                btnDisabled: 确定按钮disabled true/false
+                <br/>    
+                isShow：弹框是否显示 必选
+                <br/>    
+                ok： 确定按钮事件
+                <br/>    
+                size：弹框大小，默认大号 （lg/sm）
+                <br/>    
+                buttonShow： ok-确认按钮是否显示 cancel-取消按钮是否显示
+                <br/>    
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4" class="ice-query-action">
+                <ice-permission value='vpalact.act.query'   out='permission.test1'>
+                  <ice-button text='查询' hanle-click='btnQueryFn()'/>    
+                </ice-permission>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <ice-pagination conf="pagination"></ice-pagination>
+      <div class="row">
+        <div class="col">
+          <table class="table table-bordered table-beifu  table-hover table-grey table-striped">
+            <thead>
+              <th>序号</th>
+              <th>名称</th>
+              <th>描述</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="r in pagination.result track by $index">
+                <td class="text-center">{{r.ip}}</td>
+                <td class="text-center">{{r.time}}</td>
+                <td class="text-center">{{r.id}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <ice-pagination conf="pagination"></ice-pagination>
+    </div>
+
+    <ice-modal id="myModal" modal='modal'>这是摸态框</ice-modal>

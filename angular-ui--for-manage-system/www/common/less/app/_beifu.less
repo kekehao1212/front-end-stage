@@ -1,0 +1,56 @@
+@beifu-bg-gray: #eee;
+@beifu-blue-base: #157EFA;
+@beifu-blue-primary: #0099ff;
+@beifu-bg-button: #52b5f7;
+
+.container-beifu {
+	select.form-control {
+		background-color: @beifu-bg-gray;
+	}
+	.form-control {
+		border-radius: 0;
+	}
+	.table-beifu  thead {
+		color: @beifu-blue-base;
+		background-color: rgba(21, 126, 250, 0.15);
+	}
+	.btn {
+		background: -webkit-gradient(linear, left top, left bottom, from(rgba(82, 181, 247, 0.8)), to(rgba(82, 142, 247, 1)));
+		clor: #fff;
+		font-weight: bold;
+		border-radius: 1px;
+	}
+	.input-group-addon {
+		border-radius: 0;
+	}
+	.query-title {
+		background: -webkit-gradient(linear, left top, left bottom, from(rgba(82, 142, 247, 1)), to(rgba(82, 181, 247, .8)));
+		border-radius: 0;
+
+		.title {
+			color: @beifu-blue-base;
+		}
+	}
+	.query-container {
+		border-radius: 0;
+	}
+	.v-mask {
+		.v-model {
+			border: initial;
+		}
+		.v-head {
+			background: -webkit-gradient(linear, left top, left bottom, from(#528ef7), to(rgba(82, 181, 247, .8)));
+		}
+	}
+}
+// ie9
+body .ics-layout {
+	display: block\0;
+}
+.nav-left {
+	float: left\0;
+}
+.nav-right {
+	//margin-left: 230px\0;
+	overflow: hidden\0;
+}

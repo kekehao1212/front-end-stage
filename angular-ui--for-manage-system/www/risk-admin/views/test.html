@@ -1,0 +1,325 @@
+<div class="container-fluid info-table haichu-deal">
+	<form class="form-inline deal-group-block">
+		<div class="deal-title">
+			<span>
+        查询统计原子
+      </span>
+		</div>
+		<div class="deal-group-block ">
+			<div class="form-group deal-group">
+				<label for="username" class="deal-name text-right">名称：</label>
+				<input type="text" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" class="form-control deal-value" ng-model="infoData.queryData.name"></div>
+			<div class="form-group deal-group">
+				<label for="username" class="deal-name text-right">接入业务类型：</label>
+				<select class="selectpicker form-control" ng-model="infoData.queryData.sysBusiness  ">
+					<option value="">全部</option>
+					<option ng-repeat=" type in infoData.dict.sysBusiness" value="{{type.value}}">{{type.name}}</option>
+				</select>
+			</div>
+			<div class="form-group deal-group">
+				<label for="username" class="deal-name text-right">数据中心状态：</label>
+				<select class="selectpicker form-control" ng-model="infoData.queryData.dcPushStatus">
+					<option value="">全部</option>
+					<option ng-repeat=" type in infoData.dict.dcPushStatus " value="{{type.value}}">{{type.name}}</option>
+				</select>
+			</div>
+			<div class="form-group deal-group">
+				<label for="username" class="deal-name text-right">规则引擎状态：</label>
+				<select class="selectpicker form-control" ng-model="infoData.queryData.enabled  ">
+					<option value="">全部</option>
+					<option ng-repeat=" type in infoData.dict.enabled" value="{{type.value}}" ng-hide="infoData.queryData.dcPushStatus==1&&type.value==2">{{type.name}}</option>
+				</select>
+			</div>
+			<div class="form-group deal-group query-btn">
+				<button type="button" class="btn btn-info btn-sm" ng-click="infoData.query(nul)">&nbsp;&nbsp;&nbsp;查询&nbsp;&nbsp;&nbsp;</button>
+				<button type="button" class="btn btn-info btn-sm" ng-click="infoData.resetDict()">&nbsp;&nbsp;&nbsp;重置&nbsp;&nbsp;&nbsp;</button>
+			</div>
+		</div>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-info btn-sm" ng-click="infoData.showModal()" ng-if="currentUserInfo.perms.in_array('risk.atom.add') || currentUserInfo.admin==true">
+      <span class="glyphicon glyphicon-plus">
+      </span>
+      新增原子
+    </button>
+		<div vpal-pagination vpal-pagination-count="{{infoData.count}}" vpal-pagination-current="{{infoData.currentPage}}" vpal-pagination-total="{{infoData.totalPage}}" vpal-click="infoData.query(currentPage)"></div>
+		<div class="deal-group-block">
+			<table class="table table-bordered table-hover table-grey table-striped">
+				<thead>
+					<th>
+						序号
+					</th>
+					<th>
+						名称
+					</th>
+					<th>
+						描述
+					</th>
+					<th>接入业务类型</th>
+					<th>
+						数据中心状态
+					</th>
+					<th>
+						规则引擎状态
+					</th>
+					<th>
+						关联常规场景
+					</th>
+					<th vpal-sort="infoData" vpal-name="create_time">创建时间
+					</th>
+					<th vpal-sort="infoData" vpal-name="update_time">更新时间</th>
+				</thead>
+				<tbody>
+					<tr ng-repeat="resultData in infoData.resultData.results ">
+						<td class="text-center">
+							{{$index + (infoData.currentPage-1)*infoData.queryData.s + 1}}
+						</td>
+						<td class="text-left">
+							<a href="javascript:void(0)" ng-click="infoData.detail(resultData.id)">
+								<span ng-bind="resultData.name">
+                  </span>
+							</a>
+						</td>
+						<td class="text-left">
+							<span ng-bind="resultData.description ">
+                </span>
+						</td>
+						<td class="text-center">
+							<span ng-bind="resultData.sysBusinessDesc ">
+                </span>
+						</td>
+						<td class="text-center">
+							<input type="checkbox" ng-checked="{{resultData.dcPushStatus}}" vpal-switch="{{currentUserInfo.perms.in_array('risk.atom.push-dc')}}" vpal-switch-re="{{currentUserInfo.perms.in_array('risk.atom.push-re')}}" vpal-dc="true" data-size="small" name="dcPushStatus-checkbox" data-id="{{resultData.id}}" data-index="{{$index}}">
+						</td>
+						<td class="text-center">
+							<input type="checkbox" data-size="small" vpal-switch="{{currentUserInfo.perms.in_array('risk.atom.push-re')}}" ng-checked="{{resultData.enabled}}" vpal-push-status="{{resultData.dcPushStatus}}" vpal-dc="false" name="enabled-checkbox" data-id="{{resultData.id}}" data-index="{{$index}}">
+						</td>
+						<td class="text-left">
+							<span ng-bind="resultData.scenceDesc ">
+                </span>
+						</td>
+						<td class="text-center">
+							<span ng-bind="resultData.createTime ">
+                </span>
+						</td>
+						<td class="text-center">
+							<span ng-bind="resultData.updateTime ">
+                </span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div ng-if="!infoData.count">
+			<div class="alert alert-danger text-center" role="alert">
+				没有返回任何数据，请尝试变更查询条件
+			</div>
+		</div>
+		<div vpal-pagination vpal-pagination-count="{{infoData.count}}" vpal-pagination-current="{{infoData.currentPage}}" vpal-pagination-total="{{infoData.totalPage}}" vpal-click="infoData.query(currentPage)"></div>
+	</form>
+</div>
+<!-- 用户详细信息弹出框 -->
+<div class="modal fade  haichu-deal" id="newModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog  modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+				<h4 class="modal-title" id="myModalLabel">
+          新增原子
+        </h4>
+			</div>
+			<div class="modal-body">
+				<div class="dailog_create_user">
+					<form role="form" name="userForm" class="form-inline deal-group-block" ng-submit="submitForm(userForm.$valid)" novalidate>
+						<div class="form-group">
+							<label for="username">
+                描述: 
+              </label>
+							<input type="text" class="form-control deal-value" ng-pattern="/^(\w|[\u4E00-\u9FA5])*$/" ng-maxlength=100 placeholder="(必填)" name="description" ng-model="infoData.inputFields.description" required>
+							<span ng-if="userForm.description.$invalid" class="label label-danger invalid-text">只能输入字母，数字，中文或者下划线(100字符以内)</span>
+						</div>
+						<div vpal-select vpal-data="infoData.permissions" vpal-selected="infoData.permissionsUN" vpal-inner="fieldName" vpal-out="showName">
+							<div class="permission-title title-left ">
+								<label for="username">
+                  统计元素：
+                </label>
+							</div>
+							<div class="permission-title title-right ">
+								<label for="username">
+                  添加统计元素：<span ng-if="infoData.permissionsUN.length<=0" class="label label-danger ">必选</span>
+                </label>
+							</div>
+						</div>
+						<div class="deal-group-block">
+							<label for="username">
+                    时间:
+                  </label>
+							<select class=" form-control" ng-model="infoData.inputFields.timeType">
+								<option ng-repeat="(key, value) in infoData.fieldsData.map.timeType" value="{{key}}"> {{value}} </option>
+							</select>
+							<select ng-model="infoData.inputFields.timeFieldName" class="form-control" ng-options="value.fieldName as value.showName for value in infoData.fieldsData.timeFieldList">
+							</select>
+
+							<label for="username" class="deal-name text-right">
+                  范围:
+                  </label>
+							<input type="text" class="form-control deal-value" name="timeValue" required min="0" placeholder="[数字]-[数字](不超过100)" ng-model="infoData.inputFields.timeValue">
+							<select class="form-control" ng-model="infoData.inputFields.timeUnit ">
+								<option ng-repeat="(key, value) in infoData.fieldsData.map.timeUnit" value="{{key}}" ng-bind="value"> </option>
+							</select>
+
+						</div>
+						<div class="deal-group-block">
+							<label>统计:</label>
+							<select class=" form-control" ng-model="infoData.inputFields.statisticsModifier">
+								<option ng-repeat="(key, value) in infoData.fieldsData.map.statisticsModifier" value="{{key}}"> {{value}} </option>
+							</select>
+							<select ng-model="infoData.inputFields.statisticsFieldName" class="form-control" ng-options="value.fieldName as value.showName for value in infoData.fieldsData.statisticsFieldList">
+							</select>
+							<select class=" form-control" ng-model="infoData.inputFields.statisticsType">
+								<option ng-repeat="(key, value) in infoData.fieldsData.map.statisticsType" value="{{key}}" ng-hide="infoData.inputFields.statisticsModifier!='1'&&key!=0"> {{value}} </option>
+							</select>
+						</div>
+						<div id="deal-group-block">
+							<ul class="nav nav-tabs" ng-init="infoData.inputFields.sysBusiness='01'">
+								<li ng-class="{active: infoData.inputFields.sysBusiness == tab.parentValue}" ng-repeat="tab in infoData.fieldsData.pageConfModels">
+									<a href="javascript:void(0)" ng-click="infoData.inputFields.sysBusiness = tab.parentValue">{{tab.parentName}}</a>
+								</li>
+							</ul>
+							<div class="tab-content tab-bordered">
+								<div class="tab-panel" ng-if="tab.parentValue==infoData.inputFields.sysBusiness" ng-repeat="tab in infoData.fieldsData.pageConfModels">
+									<div class="form-group deal-group" ng-repeat="model in tab.models">
+										<label for="username" class="deal-name text-right">
+                        {{model.subName}}:
+                      </label>
+										<label class="radio-inline" ng-if="model.showType!='select'&&model.isIncludeNoLimit=='N'">
+                            <input type="radio" name="{{model.subType}}"   value=""   ng-model="infoData.inputFields[model.subType]" ng-init="infoData.inputFields[model.subType]='-1'">不限
+                      </label>
+										<label class="radio-inline" ng-repeat="sub in model.subList" ng-if="model.showType!='select'">
+                            <input type="radio" name="{{model.subType}}"   value="{{sub.value}}"  ng-model="infoData.inputFields[model.subType]"> {{sub.name}}
+                      </label>
+										<select class="selectpicker form-control" ng-model="infoData.inputFields[model.subType]" ng-init="infoData.inputFields[model.subType]='-1'" ng-if="model.showType=='select'">
+											<option value="-1" ng-if="model.isIncludeNoLimit=='N'">不限</option>
+											<option ng-repeat="sub in model.subList" value="{{sub.value}}" ng-bind="sub.name"></option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+            关闭
+          </button>
+					<button type="button" class="btn btn-primary" ng-click="infoData.addAtom()" ng-disabled="userForm.$invalid||infoData.permissionsUN.length==0">
+            确定
+          </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- 详细信息弹出框 -->
+<div class="modal fade  haichu-deal" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+	<div class="modal-dialog  modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">
+            &times;
+          </span>
+        </button>
+				<h4 class="modal-title" id="myModalLabel">
+          原子详情
+        </h4>
+			</div>
+			<div class="modal-body new_atom">
+				<div id="dailog_create_user">
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">原子ID:</span> <span class="rule-value">{{infoData.detailResult.id}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">描述:</span> <span class="rule-value">{{infoData.detailResult.atomDesc}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">名称:</span> <span class="rule-value">{{infoData.detailResult.atomName}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">数据中心推送状态:</span> <span class="rule-value">{{infoData.detailResult.dcPushStatusDesc}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">规则引擎推送状态:</span> <span class="rule-value">{{infoData.detailResult.engineeStatusDesc}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">接入业务类型:</span> <span class="rule-value">{{infoData.detailResult.sysBusiness}}</span>
+						</span>
+					</div>
+
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">统计元素:</span> <span class="rule-value">{{infoData.detailResult.mainFieldDesc}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">时间:</span> <span class="rule-value">{{infoData.detailResult.timeFieldDesc}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">统计字段:</span> <span class="rule-value">{{infoData.detailResult.satisticsFieldDesc}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">统计方式:</span> <span class="rule-value">{{infoData.detailResult.satisticsTypedDesc}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">场景:</span> <span class="rule-value">{{infoData.detailResult.scene}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">系统:</span> <span class="rule-value">{{infoData.detailResult.sysNoDesc}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">创建用户:</span> <span class="rule-value">{{infoData.detailResult.createUser}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">更新用户:</span> <span class="rule-value">{{infoData.detailResult.updateUser}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">范围:</span> <span class="rule-value">{{infoData.detailResult.timeValueDesc}}</span>
+						</span>
+						<span class="rule-inline">
+                 <span class="rule-title text-right">创建时间:</span> <span class="rule-value">{{infoData.detailResult.createTime}}</span>
+						</span>
+					</div>
+					<div class="deal-group-block">
+						<span class="rule-inline">
+                 <span class="rule-title text-right">更新时间:</span> <span class="rule-value">{{infoData.detailResult.updateTime}}</span>
+						</span>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+            关闭
+          </button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div vpal-access-deny="!currentUserInfo.perms.in_array('risk.atom.query') && currentUserInfo.admin!=true">
+</div>

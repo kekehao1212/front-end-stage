@@ -1,0 +1,7 @@
+<th ng-click="sortQuery(vpalName)" class="cursor-pointer">
+<span  ng-transclude>
+</span>
+	<i  class="glyphicon glyphicon-sort" ng-if="vpalSort.column.name!=vpalName"></i>
+	<i  class="glyphicon   " ng-if="vpalSort.column.name==vpalName"
+	ng-class="{true: 'glyphicon-chevron-down', false: 'glyphicon-chevron-up'}[vpalSort.column.sort]"></i>
+</th>
