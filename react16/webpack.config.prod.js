@@ -44,6 +44,13 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new CopyWebpackPlugin([
       {
+        from: 'serverOnline.js',
+        to: path.join(__dirname, 'dist'),
+        force: true,
+      },
+    ]),
+    new CopyWebpackPlugin([
+      {
         from: 'src/assets',
         to: path.join(__dirname, 'dist/build/assets'),
         force: true,

@@ -11,7 +11,7 @@
     "deployHtml": "babel-node tools/run deployHtml",
     "deployStatic": "babel-node tools/run deployStatic",
     "buildOnline":" webpack --progress -p  --config webpack.config.prod.js --optimize-minimize",
-    "online": "node serverOnline.js"
+    "online": "node dist/serverOnline.js"
   },
   "dependencies": {
     "all": "^0.0.0",
