@@ -23,7 +23,6 @@ class Com404 extends Component {
       code: 404,
       msg:'页面不存在:' + document.referrer
     }
-    vpalLogger.businessErrorHandler(location.href, {}, json.code, json.msg);
   }
   
   render() {

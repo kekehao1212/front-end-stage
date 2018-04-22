@@ -64,13 +64,11 @@ export function fetchGet(url, data = {}, isShowError = true, isShowLoading = tru
 				isShowError && showErrorDialog({
 					content: json.sub_msg
 				})
-
-				vpalLogger.businessErrorHandler(URL, options, json.code, json.msg, json.sub_code, json.sub_msg);
 			}
 			return json
 		})
 		.catch(e => {
-			vpalLogger.fetchErrorHandler(URL, options, e.stack, e.message);
+			
 			vera.hideLoading()
 			isShowError && showErrorDialog({
 				content: '系统繁忙，请稍后尝试'
@@ -134,14 +132,10 @@ export function fetchPost(url, data = {}, isShowError = true, isShowLoading = tr
 				isShowError && showErrorDialog({
 					content: json.sub_msg
 				})
-				vpalLogger.postParamHander(URL, options);
-				vpalLogger.businessErrorHandler(URL, options, json.code, json.msg, json.sub_code, json.sub_msg);
 			}
 			return json || {}
 		})
 		.catch(e => {
-			vpalLogger.postParamHander(URL, options);
-			vpalLogger.fetchErrorHandler(URL, options, e.stack, e.message);
 			vera.hideLoading()
 			isShowError && showErrorDialog({
 				content: '系统繁忙，请稍后尝试'

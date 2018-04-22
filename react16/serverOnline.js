@@ -2,7 +2,7 @@ var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
 // var config = require('./webpack.config.prod')
-var config = require('./webpack.config')
+var config = require('./webpack.config.prod')
 
 var express = require('express')
 var app = express()
@@ -26,12 +26,11 @@ console.log('path2 : ' + config.output.publicPath)
 app.use(webpackHotMiddleware(compiler))
 
 app.use(express.static(__dirname + '/'));
-
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/src/index.html')
+  res.sendFile(__dirname + '/dist/build/index.html')
 })
 app.get("/*", function(req, res) {
-  res.sendFile(__dirname + '/src/index.html')
+  res.sendFile(__dirname + '/dist/build/index.html')
 })
 app.listen(port, function(error) {
   if (error) {

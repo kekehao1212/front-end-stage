@@ -13,128 +13,7 @@
     <link rel="dns-prefetch" href="//mc.vpalstatic.com">
     <link rel="dns-prefetch" href="//mlogin.vpalstatic.com">
     <link rel="shortcut icon" type="image/png" href="//s.vpalstatic.com/public/favicon.ico" />
-    <title>唯品支付</title>
-    <style type="text/css">
-        .gl-mask {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            z-index: 9999;
-            background: #f3f3f3;
-        }
-        
-        .gl-loading {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin-left: -40px;
-            margin-top: -40px;
-            width: 80px;
-            height: 80px;
-        }
-    </style>
-    <script>
-        ! function() {
-            try {
-                var r = function(r, o, e) {
-                        return r.addEventListener(o, e, !0)
-                    },
-                    o = function() {
-                        for (var r = [], o = 0; o < arguments.length; o++) {
-                            var e = arguments[o];
-                            for (var t in e) {
-                                var n = e[t];
-                                e.hasOwnProperty(t) && null != n && r.push(t + "=" + encodeURIComponent(n))
-                            }
-                        }
-                        return r.join("&")
-                    },
-                    e = function(r) {
-                        return JSON.stringify(r)
-                    },
-                    t = window.navigator,
-                    n = {
-                        remote: !0,
-                        remoteLoggerUrl: "https://error.vpal.com/log.gif",
-                        remoteData: {
-                            platform: t.platform,
-                            appName: t.appName,
-                            vendor: t.vendor,
-                            cookieEnabled: t.cookieEnabled
-                        },
-                        remoteLogger: function(r) {
-                            (new Image).src = [this.remoteLoggerUrl, r].join("?")
-                        },
-                        log: function(r, e) {
-                            this.remote ? this.remoteLogger(o({
-                                log_type: r,
-                                ts: (new Date).getTime()
-                            }, this.remoteData, e)) : console.log(r, this.remoteData, e)
-                        },
-                        scriptErrorHandler: function(r, o, t, n) {
-                            this.log("script_error", {
-                                msg: e({
-                                    url: o,
-                                    msg: r,
-                                    line: t,
-                                    column: n
-                                })
-                            })
-                        },
-                        sourceErrorHandler: function(r) {
-                            this.log("source_error", {
-                                msg: e({
-                                    url: r
-                                })
-                            })
-                        },
-                        fetchErrorHandler: function(r, o, t, n) {
-                            this.log("fetch_error", {
-                                msg: e({
-                                    url: r,
-                                    data: o,
-                                    status: t,
-                                    statusText: n
-                                })
-                            })
-                        },
-                        businessErrorHandler: function(r, o, e, t, n, a) {
-                            this.log("business_error", {
-                                msg: JSON.stringify({
-                                    url: r,
-                                    data: o,
-                                    code: e,
-                                    msg: t,
-                                    sub_code: n,
-                                    sub_msg: a
-                                })
-                            })
-                        },
-                        postParamHander: function(r, o) {
-                            this.log("post_param", {
-                                msg: JSON.stringify({
-                                    url: r,
-                                    data: o
-                                })
-                            })
-                        }
-                    };
-                window.onerror = function(r, o, e, t, a) {
-                    n.scriptErrorHandler(r, o, e, t, a)
-                }, r(window, "unhandledrejection", function(r) {
-                    n.scriptErrorHandler(r.reason ? r.reason.message : "uncaught promise rejection")
-                }), r(document, "error", function(r) {
-                    var o = r.target,
-                        e = o.src || o.href;
-                    n.sourceErrorHandler(e)
-                }), window.vpalLogger = n
-            } catch (r) {}
-        }();
-    </script>
-    <script>
-        vpalLogger.remote = true;
+    <title>TEST</title>
     </script>
 </head>
 <body>
@@ -143,8 +22,6 @@
     <script type="text/javascript">
         document.body.addEventListener('touchstart', function() {});
     </script>
-    <script type="text/javascript" src="https://mc.vpalstatic.com/<%= version %>/js/vendor.bundle.js"></script>
-    <script type="text/javascript" src="https://mc.vpalstatic.com/<%= version %>/js/bundle.js"></script>
 </body>
 
 </html>

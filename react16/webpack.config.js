@@ -7,7 +7,8 @@ var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 var baseurl = '\\/src/img'
 process.env.NODE_ENV ='development'
 process.env.HOT = true
-console.log(__dirname)
+console.log('path : ' + __dirname)
+const publicPath =  '/static/'
 module.exports = {
   devtool:'cheap-module-eval-source-map',
   entry: [
@@ -19,7 +20,7 @@ module.exports = {
     filename: 'bundle.js',
     // chunkFilename: '[name].[chunkhash:5].chunk.js',
     chunkFilename: '[name].chunk.js',
-    publicPath: '/static/'
+    publicPath: publicPath
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
@@ -28,9 +29,9 @@ module.exports = {
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('development')
     }),
-    new FlowBabelWebpackPlugin({
-      warn: true,
-    }),
+    // new FlowBabelWebpackPlugin({
+    //   warn: true,
+    // }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
    // new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({

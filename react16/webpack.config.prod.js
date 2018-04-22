@@ -1,11 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 var publishVersion = require('./publishVersion')
 var pkg = require('./package.json')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 var baseurl = '\\//mc.vpalstatic.com/img'
 process.env.NODE_ENV ='production'
 process.env.HOT = false
+// 'https://mc.vpalstatic.com/'+publishVersion+'/js/'
+const publicPath = '/'+publishVersion+'/js/' //'/static/'+publishVersion+'/js/'
 
 module.exports = {
   // devtool:'cheap-module-eval-source-map',
@@ -14,11 +18,11 @@ module.exports = {
     vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch']
   },
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'dist/build/' + publishVersion + '/js'),
     filename: 'bundle.js',
     // chunkFilename: '[name].[chunkhash:5].chunk.js',
     chunkFilename: '[name].chunk.js',
-    publicPath: 'https://mc.vpalstatic.com/'+publishVersion+'/js/'
+    publicPath: publicPath
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -30,7 +34,7 @@ module.exports = {
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
     new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
-    new CleanWebpackPlugin(['dist']),
+    //new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({
        test: /\.css?$/,
        options: {
@@ -39,7 +43,21 @@ module.exports = {
           }
        }
      }),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: 'src/img',
+        to: path.join(__dirname, 'dist/build/img'),
+        force: true,
+      },
+    ]),
+    new HtmlWebpackPlugin({
+      template: `src/index_prod.html`,
+      filename: '../../index.html',
+      minify:  {
+        collapseWhitespace: false,
+      },
+    }),
   ],
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,
