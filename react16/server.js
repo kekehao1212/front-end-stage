@@ -19,10 +19,6 @@ app.use(webpackDevMiddleware(compiler, {
 	}
 }))
 
-console.log('path : ' + __dirname)
-console.log('path2 : ' + config.output.publicPath)
-
-
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname + '/'));
 

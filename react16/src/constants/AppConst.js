@@ -1,4 +1,4 @@
-export const ENV= window.ENV || 'DEV' //'RELEASE' //DEV PROD TEST RELEASE
+export const ENV= window.ENV || 'RELEASE' //'RELEASE' //DEV PROD TEST RELEASE
 export const DEBUG = ENV === 'PROD'? false:true // true false
 export const SERVER_URL='/api'
 export const BASE = ''

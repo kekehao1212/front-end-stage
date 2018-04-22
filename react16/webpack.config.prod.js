@@ -5,11 +5,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 var publishVersion = require('./publishVersion')
 var pkg = require('./package.json')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-var baseurl = '\\//localhost:9001/assets/img'
+var baseurl = '\\/assets/img'
 process.env.NODE_ENV ='production'
 process.env.HOT = false
 // 'https://mc.vpalstatic.com/'+publishVersion+'/js/'
-const publicPath = '//localhost:9001/assets/'+publishVersion+'/js/' //'/static/'+publishVersion+'/js/'
+const publicPath = '/assets/'+publishVersion+'/js/' //'/static/'+publishVersion+'/js/'
 
 module.exports = {
   entry: {
