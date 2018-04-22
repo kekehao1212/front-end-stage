@@ -25,7 +25,7 @@ class Home extends Component {
   render() {
     return (
       <div className='container-text container container-text'>
-        <Button>this is home</Button>
+        <Button>this is home </Button>
         <img src={AppConst.IMGSRC['LOGO']} />
       </div>
     )

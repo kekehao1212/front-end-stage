@@ -14,9 +14,9 @@ export const ASSETS_ROOT = ASSETS_ROOT_MAP[ENV]
 
 const IMG_ROOT = {
 	'DEV': 'src/assets/img',
-	'PROD': STATIC_DOMAIN +'/img',
-	'TEST': STATIC_DOMAIN + '/img',
-	'RELEASE': STATIC_DOMAIN + '/img'
+	'PROD': STATIC_DOMAIN +'/assets/img',
+	'TEST': STATIC_DOMAIN + '/assets/img',
+	'RELEASE': STATIC_DOMAIN + '/assets/img'
 }
 export const IMG_SRC_ROOT = IMG_ROOT[ENV]
 export const IMGSRC = {
