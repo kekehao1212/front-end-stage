@@ -1,9 +1,9 @@
-export const ENV= window.ENV || 'PROD' //'RELEASE' //DEV PROD TEST RELEASE
+export const ENV= window.ENV || 'DEV' //'RELEASE' //DEV PROD TEST RELEASE
 export const DEBUG = ENV === 'PROD'? false:true // true false
 export const SERVER_URL='/api'
 export const BASE = ''
-const STATIC_DOMAIN = '//mc.vpalstatic.com'
-const STATIC_PUB_DOMAIN = '//s.vpalstatic.com'
+const STATIC_DOMAIN = ''
+const STATIC_PUB_DOMAIN = ''
 const ASSETS_ROOT_MAP = {
 	'DEV':'src/assets',
 	'PROD': STATIC_DOMAIN + '/assets',
@@ -13,7 +13,7 @@ const ASSETS_ROOT_MAP = {
 export const ASSETS_ROOT = ASSETS_ROOT_MAP[ENV]
 
 const IMG_ROOT = {
-	'DEV': 'src/img',
+	'DEV': 'src/assets/img',
 	'PROD': STATIC_DOMAIN +'/img',
 	'TEST': STATIC_DOMAIN + '/img',
 	'RELEASE': STATIC_DOMAIN + '/img'

@@ -24,15 +24,30 @@ console.log('path2 : ' + config.output.publicPath)
 
 
 app.use(webpackHotMiddleware(compiler))
-
 app.use(express.static(__dirname + '/'));
+
+app.get("/myapi", function(req, res) {
+  var json ={
+  "data": {
+    "respCode": "00000000",
+    "respMsg": "处理成功",
+    "value": 1 //1-签约成功，0签约失败，2-已经签约
+  }
+}
+  setTimeout(function(){
+    res.send(json)
+  },100)
+  
+})
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/src/index.html')
 })
+
 app.get("/*", function(req, res) {
   res.sendFile(__dirname + '/src/index.html')
 })
+
 app.listen(port, function(error) {
   if (error) {
     console.error(error)

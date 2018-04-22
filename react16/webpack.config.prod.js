@@ -5,22 +5,20 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 var publishVersion = require('./publishVersion')
 var pkg = require('./package.json')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-var baseurl = '\\//mc.vpalstatic.com/img'
+var baseurl = '\\//localhost:9001/assets/img'
 process.env.NODE_ENV ='production'
 process.env.HOT = false
 // 'https://mc.vpalstatic.com/'+publishVersion+'/js/'
-const publicPath = '/'+publishVersion+'/js/' //'/static/'+publishVersion+'/js/'
+const publicPath = '//localhost:9001/assets/'+publishVersion+'/js/' //'/static/'+publishVersion+'/js/'
 
 module.exports = {
-  // devtool:'cheap-module-eval-source-map',
   entry: {
     index: './src/index',
     vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch']
   },
   output: {
-    path: path.join(__dirname, 'dist/build/' + publishVersion + '/js'),
+    path: path.join(__dirname, 'dist/build/assets/' + publishVersion + '/js'),
     filename: 'bundle.js',
-    // chunkFilename: '[name].[chunkhash:5].chunk.js',
     chunkFilename: '[name].chunk.js',
     publicPath: publicPath
   },
@@ -46,14 +44,14 @@ module.exports = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new CopyWebpackPlugin([
       {
-        from: 'src/img',
-        to: path.join(__dirname, 'dist/build/img'),
+        from: 'src/assets',
+        to: path.join(__dirname, 'dist/build/assets'),
         force: true,
       },
     ]),
     new HtmlWebpackPlugin({
       template: `src/index_prod.html`,
-      filename: '../../index.html',
+      filename: '../../../index.html',
       minify:  {
         collapseWhitespace: false,
       },

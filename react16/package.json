@@ -1,10 +1,10 @@
 {
-  "name": "cashier-h5",
-  "version": "5.2.0",
-  "pubVersion": "cashier-h5",
-  "description": "cashier-h5",
-  "remoteHtmlUrl": "http://10.199.133.181:9999/vpal-new/sh_frontend/cashier-h5",
-  "remoteStaticUrl": "http://10.199.133.181:9999/vpal-new/sh_frontend/mc-static",
+  "name": "Test",
+  "version": "1.0.0",
+  "pubVersion": "Test",
+  "description": "Test",
+  "remoteHtmlUrl": "/vpal-new/sh_frontend/cashier-h5",
+  "remoteStaticUrl": "/vpal-new/sh_frontend/mc-static",
   "scripts": {
     "dev": "node server.js -- --ENV dev",
     "build": "gulp build",

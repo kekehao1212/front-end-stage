@@ -12,6 +12,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd';
+import * as AppConst from '../../constants/AppConst'
 
 class Home extends Component {
   constructor(props, context) {
@@ -25,6 +26,7 @@ class Home extends Component {
     return (
       <div className='container-text container container-text'>
         <Button>this is home</Button>
+        <img src={AppConst.IMGSRC['LOGO']} />
       </div>
     )
   }

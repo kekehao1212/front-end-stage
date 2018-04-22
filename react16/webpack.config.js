@@ -4,7 +4,7 @@ var publishVersion = require('./publishVersion')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 
-var baseurl = '\\/src/img'
+var baseurl = '\\/src/assets/img'
 process.env.NODE_ENV ='development'
 process.env.HOT = true
 console.log('path : ' + __dirname)
