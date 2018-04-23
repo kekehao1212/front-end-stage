@@ -14,7 +14,7 @@ const publicPath = '/assets/'+publishVersion+'/js/' //'/static/'+publishVersion+
 module.exports = {
   entry: {
     index: './src/index',
-    vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch']
+    vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch','antd'],
   },
   output: {
     path: path.join(__dirname, 'dist/build/assets/' + publishVersion + '/js'),
