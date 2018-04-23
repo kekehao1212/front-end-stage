@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "node server.js -- --ENV dev",
     "build":" webpack --progress -p  --config webpack.config.prod.js --optimize-minimize",
-    "preview": "node dist/serverOnline.js",
+    "preview": "node serverOnline.js",
     "deployHtml": "babel-node tools/run deployHtml",
     "deployStatic": "babel-node tools/run deployStatic"
   },
