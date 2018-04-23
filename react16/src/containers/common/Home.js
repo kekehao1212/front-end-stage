@@ -13,6 +13,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 //import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
+import { Link } from 'react-router'
 
 class Home extends Component {
   constructor(props, context) {
@@ -25,7 +26,9 @@ class Home extends Component {
   render() {
     return (
       <div className='container-text container container-text'>
-       
+       <Link to='/test' > test</Link>
+       <Link to='/404'>404</Link>
+       <Link to='/home' >home</Link>
         <img src={AppConst.IMGSRC['LOGO']} />
       </div>
     )

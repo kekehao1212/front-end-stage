@@ -6,7 +6,7 @@ var config = require('./webpack.config')
 
 var express = require('express')
 var app = express()
-var port = 9001
+var port = 9000
 
 var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { 

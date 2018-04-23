@@ -11,41 +11,33 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button } from 'antd';
+//import { Button } from 'antd';
 import { Link } from 'react-router'
+import * as AppConst from '../../constants/AppConst'
 
-class Com404 extends Component {
+class Test extends Component {
   constructor(props, context) {
     super(props, context)
   }
   componentDidMount(){
-    document.title = '404 not found'
-    let json = {
-      code: 404,
-      msg:'页面不存在:' + document.referrer
-    }
+    document.title = 'Test'
   }
   
   render() {
     return (
       <div className='container-text container container-text'>
-        <div className="com404" style={{marginTop:60+ 'px'}}>404 , not found</div>
-        <div className="row " style={{marginTop:100+ 'px'}}>
-          <div className="col padding-h-30">
-            1233134
-          </div>
-        </div>
+        Test TestTestTestTest
       <Link to='/test' > test</Link>
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
-        <Button>Hello world!</Button>
+        <img src={AppConst.IMGSRC['LOGO']} />
       </div>
     )
   }
 }
 
 
-Com404.contextTypes = {
+Test.contextTypes = {
    router: PropTypes.object
 }
 
@@ -63,5 +55,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Com404)
+)(Test)
 

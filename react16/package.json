@@ -7,11 +7,10 @@
   "remoteStaticUrl": "/vpal-new/sh_frontend/mc-static",
   "scripts": {
     "dev": "node server.js -- --ENV dev",
-    "build": "gulp build",
+    "build":" webpack --progress -p  --config webpack.config.prod.js --optimize-minimize",
+    "preview": "node dist/serverOnline.js",
     "deployHtml": "babel-node tools/run deployHtml",
-    "deployStatic": "babel-node tools/run deployStatic",
-    "buildOnline":" webpack --progress -p  --config webpack.config.prod.js --optimize-minimize",
-    "online": "node dist/serverOnline.js"
+    "deployStatic": "babel-node tools/run deployStatic"
   },
   "dependencies": {
     "all": "^0.0.0",

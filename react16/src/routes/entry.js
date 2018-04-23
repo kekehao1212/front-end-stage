@@ -11,15 +11,22 @@ const com404 = (location, callback) => {
 
 const home = (location, callback) => {
   require.ensure([], require => {
-    callback(null, require('../containers/common/index').default)
+    callback(null, require('../containers/common/Home').default)
   }, 'home')
+}
+
+const test = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('../containers/common/Test').default)
+  }, 'test')
 }
 
 let base = AppConst.BASE
 
 export default (
   <Route path={base} component={App} >
-    <Route path={base+"/index"} getComponent={home}  /> 
+    <Route path={base+"/Home"} getComponent={home}  /> 
+    <Route path={base+"/test"} getComponent={test}  /> 
     <Route path={"*"} getComponent={com404} />
   </Route>
 )

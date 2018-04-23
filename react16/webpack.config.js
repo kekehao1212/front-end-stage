@@ -4,7 +4,7 @@ var publishVersion = require('./publishVersion')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 
-var baseurl = '\\/src/assets/img'
+var baseurl = '\\/src/img'
 process.env.NODE_ENV ='development'
 process.env.HOT = true
 console.log('path : ' + __dirname)
@@ -50,7 +50,7 @@ module.exports = {
         test: /\.js$/,
         use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
         exclude: /node_modules/,
-        include: __dirname,
+        include: __dirname
       },
       {
         test: /\.css?$/,

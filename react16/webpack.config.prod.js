@@ -14,11 +14,12 @@ const publicPath = '/assets/'+publishVersion+'/js/' //'/static/'+publishVersion+
 module.exports = {
   entry: {
     index: './src/index',
-    vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch','antd'],
+    vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch'],
+    antd: ['antd'],
   },
   output: {
     path: path.join(__dirname, 'dist/build/assets/' + publishVersion + '/js'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
     publicPath: publicPath
   },
@@ -31,7 +32,9 @@ module.exports = {
     new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
+    //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor','antd'] }),
+
     //new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({
        test: /\.css?$/,
