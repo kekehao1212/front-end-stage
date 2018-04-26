@@ -11,7 +11,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-//import { Button } from 'antd';
+import { Button } from 'antd';
 import { Link } from 'react-router'
 import * as AppConst from '../../constants/AppConst'
 
@@ -31,6 +31,7 @@ class Test extends Component {
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
         <img src={AppConst.IMGSRC['LOGO']} />
+         <Button>Hello world! test</Button>
       </div>
     )
   }

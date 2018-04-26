@@ -15,7 +15,7 @@ module.exports = {
   entry: {
     index: './src/index',
     vendor: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux','redux-thunk','isomorphic-fetch'],
-    antd: ['antd'],
+    //antd: ['antd/lib/button'],
   },
   output: {
     path: path.join(__dirname, 'dist/build/assets/' + publishVersion + '/js'),
@@ -33,8 +33,8 @@ module.exports = {
         'process.env.NODE_ENV': JSON.stringify('production')
     }),
     //new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor','antd'] }),
-
+    //new webpack.optimize.CommonsChunkPlugin({ names: ['vendor','antd'] }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor'] }),
     //new CleanWebpackPlugin(['dist']),
     new webpack.LoaderOptionsPlugin({
        test: /\.css?$/,
@@ -65,7 +65,16 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
+        //use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
+        use: {
+            loader: "babel-loader?presets[]=react,presets[]=es2015",
+            options: {
+                presets: [
+                   "react","es2015"
+                ],
+                plugins: [['import', { libraryName: 'antd', style: 'css' }]]
+            }
+        },
         exclude: /node_modules/,
         include: __dirname
       },

@@ -48,7 +48,15 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
+        use: {
+            loader: "babel-loader?presets[]=react,presets[]=es2015",
+            options: {
+                presets: [
+                   "react","es2015"
+                ],
+                plugins: [['import', { libraryName: 'antd', style: 'css' }]]
+            }
+        },
         exclude: /node_modules/,
         include: __dirname
       },
