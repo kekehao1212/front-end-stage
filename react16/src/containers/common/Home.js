@@ -26,7 +26,7 @@ class Home extends Component {
   render() {
     return (
       <div className='container-text container container-text'>
-       <Link to='/test' > test</Link>
+       <Link to='/test' > test </Link>
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
         <img src={AppConst.IMGSRC['LOGO']} />

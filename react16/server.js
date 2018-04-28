@@ -1,9 +1,8 @@
 var webpack = require('webpack')
+var cp = require('child_process')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
-// var config = require('./webpack.config.prod')
 var config = require('./webpack.config')
-
 var express = require('express')
 var app = express()
 var port = 9000
@@ -18,7 +17,6 @@ app.use(webpackDevMiddleware(compiler, {
 	    poll: 1000 // is this the same as specifying --watch-poll?
 	}
 }))
-
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname + '/'));
 
@@ -33,15 +31,14 @@ app.get("/myapi", function(req, res) {
   setTimeout(function(){
     res.send(json)
   },100)
-  
 })
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + '/src/index.html')
+  res.sendFile(__dirname + '/src/index_dev.html')
 })
 
 app.get("/*", function(req, res) {
-  res.sendFile(__dirname + '/src/index.html')
+  res.sendFile(__dirname + '/src/index_dev.html')
 })
 
 app.listen(port, function(error) {
@@ -49,5 +46,6 @@ app.listen(port, function(error) {
     console.error(error)
   } else {
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
+    cp.exec('open http://localhost:9000/home')    
   }
 })
