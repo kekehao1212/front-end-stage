@@ -18,7 +18,7 @@ module.exports = {
       './src/index',
     ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button'],
+    antd: ['antd/lib/button','antd/lib/input'],
   },
   output: {
     path: path.join(__dirname, 'dist'),

@@ -30,7 +30,6 @@ class Test extends Component {
       <Link to='/test' > test</Link>
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
-        <img src={AppConst.IMGSRC['LOGO']} />
          <Button>Hello world! test</Button>
       </div>
     )

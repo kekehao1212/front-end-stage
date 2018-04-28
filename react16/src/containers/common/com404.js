@@ -11,7 +11,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button } from 'antd';
+import { Button ,Input} from 'antd';
 import { Link } from 'react-router'
 
 class Com404 extends Component {
@@ -39,6 +39,7 @@ class Com404 extends Component {
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
         <Button>Hello world!</Button>
+        <Input />
       </div>
     )
   }
