@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 //import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
+import logo from '../../assets/img/logo.png'
 
 class Home extends Component {
   constructor(props, context) {
@@ -30,6 +31,7 @@ class Home extends Component {
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
         <img src={AppConst.IMGSRC['LOGO']} />
+        <img src={logo} />
       </div>
     )
   }

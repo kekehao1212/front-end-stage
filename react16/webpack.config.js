@@ -74,7 +74,19 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif)$/,
-        use: ['url-loader?limit=0']
+        //use: ['url-loader?limit=1']
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name:'[name].[ext]',
+          }
+        },
+        {
+          loader: 'image-webpack-loader',
+          options: {
+            bpassOnDebug:true,
+          }
+        }],
       },
       {
         test: /\.(mp4|ogg|svg)$/,
