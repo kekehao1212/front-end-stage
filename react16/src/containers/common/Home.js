@@ -11,6 +11,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import * as AppActions from '../../actions/AppActions'
 //import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
@@ -22,6 +23,8 @@ class Home extends Component {
   }
   componentDidMount(){
     document.title = 'home'
+    const { actions } = this.props
+    actions.TEST()
   }
   
   render() {
@@ -29,7 +32,11 @@ class Home extends Component {
       <div className='container-text container container-text'>
        <Link to='/test' > test </Link>
        <Link to='/404'>404</Link>
-       <Link to='/home' >home</Link>
+       <button onClick={()=>{
+         this.context.router.push({ pathname: "/home", query: {
+           test:3224
+         } })
+       }}>home</button>
         <img src={AppConst.IMGSRC['LOGO']} />
         <img src={logo} />
       </div>
@@ -50,6 +57,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(AppActions, dispatch),
   }
 }
 
