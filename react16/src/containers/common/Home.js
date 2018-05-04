@@ -6,7 +6,7 @@
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button } from 'antd'
+import { Button, DatePicker  } from 'antd'
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
@@ -27,6 +27,10 @@ class Home extends Component {
             <Button icon = "search" > Search </Button>  
             <img src = { AppConst.IMGSRC['LOGO'] }/>  
             <img src = { logo }/>  
+            <DatePicker
+            showTime
+            format="YYYY-MM-DD HH:mm:ss"
+            placeholder="Select Time"/>
             </div >
         )
     }

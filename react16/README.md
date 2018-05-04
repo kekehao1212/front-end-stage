@@ -1,3 +1,8 @@
+### start
+ 
+ npm i
+ npm run start
+
 ### deploy
     
     先执行： npm tun build
@@ -15,6 +20,7 @@
 
 ### antd
 
+  wiki:http://ant.design/components/date-picker-cn/
 	https://www.jianshu.com/p/e06044f47ab6
 
     
