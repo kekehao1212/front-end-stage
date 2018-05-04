@@ -18,4 +18,4 @@
 	https://www.jianshu.com/p/e06044f47ab6
 
     
-  //["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
+  ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]
