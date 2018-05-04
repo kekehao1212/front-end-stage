@@ -1,18 +1,13 @@
 /**
  * Author: tristan.dong
  *
- * Github: https://github.com/TristanDongMaster
- *
- * Last Modified:   18/03/20 
- *
- * 404页面
- */
-import React, { Component } from 'react'
+ * Github: https://github.com/TristanDongMaster *  * Last Modified:18/03/20 *  * 404页面 */
+ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AppActions from '../../actions/AppActions'
-//import { Button } from 'antd';
+import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
@@ -32,11 +27,11 @@ class Home extends Component {
       <div className='container-text container container-text'>
        <Link to='/test' > test </Link>
        <Link to='/404'>404</Link>
-       <button onClick={()=>{
+       <Button icon='search' onClick={()=>{
          this.context.router.push({ pathname: "/home", query: {
            test:3224
          } })
-       }}>home</button>
+       }}>home</Button>
         <img src={AppConst.IMGSRC['LOGO']} />
         <img src={logo} />
       </div>
@@ -46,13 +41,13 @@ class Home extends Component {
 
 
 Home.contextTypes = {
-   router: PropTypes.object
+    router: PropTypes.object
 }
 
 function mapStateToProps(state) {
-  return {
-    stores: state
-  }
+    return {
+        stores: state
+    }
 }
 
 function mapDispatchToProps(dispatch) {
@@ -62,7 +57,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(Home)
-
