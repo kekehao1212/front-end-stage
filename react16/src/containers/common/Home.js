@@ -11,6 +11,8 @@ import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
+import fetch from 'isomorphic-fetch'
+import {fetchAsyncGet, testResult} from '../../modules/fetch'
 
 class Home extends Component {
   constructor(props, context) {
@@ -20,8 +22,12 @@ class Home extends Component {
     document.title = 'home'
     const { actions } = this.props
     actions.TEST()
+    testResult()
+    var a = fetchAsyncGet('/myapi?002')
+    a.then((r)=>{
+        console.log(r)
+    })
   }
-  
   render() {
     return (
       <div className='container-text container container-text'>
