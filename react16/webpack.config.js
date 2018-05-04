@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 var baseurl = '\\/src/assets/img'
+var fonturl = '\\/src/assets/iconfont/iconfont'
 process.env.NODE_ENV = 'development'
 process.env.HOT = true
 console.log('path : ' + __dirname)
@@ -54,7 +55,7 @@ module.exports = {
             presets: [
               "react", "es2015"
             ],
-            plugins: [['import', { libraryName: 'antd', style: 'css' }]]
+            plugins: [['import', { libraryName: 'antd', style: 'less' }]]
           }
         },
         exclude: /node_modules/,
@@ -66,7 +67,7 @@ module.exports = {
       },
       {
         test: /\.less/,
-        use: ['style-loader', 'css-loader', 'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'"}}']
+        use: ['style-loader', 'css-loader', 'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","fonturl":"\'' + fonturl + '\'"}}']
       },
       {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,

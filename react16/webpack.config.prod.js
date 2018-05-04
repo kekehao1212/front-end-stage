@@ -6,6 +6,7 @@ var publishVersion = require('./publishVersion')
 var pkg = require('./package.json')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 var baseurl = '\\/assets/img'
+var fonturl = '\\/assets/iconfont/iconfont'
 process.env.NODE_ENV = 'production'
 process.env.HOT = false
 const publicPath = '/assets/' + publishVersion + '/js/'
@@ -69,7 +70,7 @@ module.exports = {
             presets: [
               "react", "es2015"
             ],
-            plugins: [['import', { libraryName: 'antd', style: 'css' }]]
+            plugins: [['import', { libraryName: 'antd', style: 'less' }]]
           }
         },
         exclude: /node_modules/,
@@ -81,7 +82,7 @@ module.exports = {
       },
       {
         test: /\.less/,
-        use: ['style-loader', 'css-loader', 'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'"}}']
+        use: ['style-loader', 'css-loader', 'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","fonturl":"\'' + fonturl + '\'"}}']
       },
       {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
