@@ -1,6 +1,8 @@
 var demo2 = require('./demo2.js')
 var demo1 =  require('./demo1.js')
-var data = [demo2,demo1]
+var testapi =  require('./testapi.js')
+
+var data = [demo2,demo1,testapi]
 
 function getApiData(api){
     var r = data.filter((item)=>{

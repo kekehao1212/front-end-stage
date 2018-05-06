@@ -8,8 +8,24 @@ var express = require('express')
 var app = express()
 var port = 9000
 var PATHS = require('./PATHS');
-
+var proxy = require('http-proxy-middleware');
 var compiler = webpack(config)
+var proxyTable = require('../mockService/proxyTable');
+// proxy api requests
+// 顺序必须在 bodyParser 之前！！！
+Object.keys(proxyTable).forEach(function(context) {
+  var options = proxyTable[context]
+  if (typeof options === 'string') {
+    options = {
+      target: options
+    }
+  }
+  app.use(proxy(options.filter || context, options));
+})
+// // // 代理
+// app.use('/testapi/demo2', proxy({target: 'http://localhost:9000/api/demo2', changeOrigin: true}));
+// app.use('/tapi/*', proxy({target: 'http://localhost:9000/api', changeOrigin: true}));
+
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath,

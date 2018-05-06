@@ -20,7 +20,7 @@ module.exports = {
       PATHS.SRC.join('index'),
     ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button','antd/lib/input'],
+    antd: ['antd/lib/button', 'antd/lib/input'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -43,7 +43,7 @@ module.exports = {
         }
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),    
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),
   ],
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,
@@ -80,13 +80,13 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name:'[name].[ext]',
+            name: '[name].[ext]',
           }
         },
         {
           loader: 'image-webpack-loader',
           options: {
-            bpassOnDebug:true,
+            bpassOnDebug: true,
           }
         }],
       },
@@ -97,16 +97,16 @@ module.exports = {
     ]
   },
   resolve: {
-      alias: {
-          ROOT: PATHS.ROOT,
-          // 自定义路径别名
-          MOCK: PATHS.MOCK,
-          ASSETS: PATHS.SRC.join('assets'),
-          COMPONENTS: PATHS.SRC.join('components'),
-          MODULES: PATHS.SRC.join('modules'),          
-          ACTIONS: PATHS.SRC.join('actions'), 
-          LIBS: PATHS.SRC.join('libs'),
-          CONSTANTS: PATHS.SRC.join('constants'),
-      },
+    alias: {
+      ROOT: PATHS.ROOT,
+      // 自定义路径别名
+      MOCK: PATHS.MOCK,
+      ASSETS: PATHS.SRC.join('assets'),
+      COMPONENTS: PATHS.SRC.join('components'),
+      MODULES: PATHS.SRC.join('modules'),
+      ACTIONS: PATHS.SRC.join('actions'),
+      LIBS: PATHS.SRC.join('libs'),
+      CONSTANTS: PATHS.SRC.join('constants'),
+    },
   },
 }
