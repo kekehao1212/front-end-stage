@@ -22,9 +22,6 @@ Object.keys(proxyTable).forEach(function(context) {
   }
   app.use(proxy(options.filter || context, options));
 })
-// // // 代理
-// app.use('/testapi/demo2', proxy({target: 'http://localhost:9000/api/demo2', changeOrigin: true}));
-// app.use('/tapi/*', proxy({target: 'http://localhost:9000/api', changeOrigin: true}));
 
 app.use(webpackDevMiddleware(compiler, {
   noInfo: true,
