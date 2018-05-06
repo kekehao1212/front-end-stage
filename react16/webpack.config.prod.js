@@ -10,6 +10,7 @@ var fonturl = '\\/assets/iconfont/iconfont'
 process.env.NODE_ENV = 'production'
 process.env.HOT = false
 const publicPath = '/assets/' + publishVersion + '/js/'
+var PATHS = require('./config/PATHS');
 
 module.exports = {
   entry: {
@@ -109,6 +110,19 @@ module.exports = {
         use: ['file-loader']
       }
     ]
-  }
+  },
+  resolve: {
+      alias: {
+          ROOT: PATHS.ROOT,
+          // 自定义路径别名
+          MOCK: PATHS.MOCK,
+          ASSETS: PATHS.SRC.join('assets'),
+          COMPONENTS: PATHS.SRC.join('components'),
+          MODULES: PATHS.SRC.join('modules'),          
+          ACTIONS: PATHS.SRC.join('actions'), 
+          LIBS: PATHS.SRC.join('libs'),
+          CONSTANTS: PATHS.SRC.join('constants'),
+      },
+  },
 }
 

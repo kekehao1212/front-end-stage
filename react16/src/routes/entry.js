@@ -21,12 +21,19 @@ const test = (location, callback) => {
   }, 'test')
 }
 
+const demo = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('../containers/common/Demo/Index').default)
+  }, 'demo')
+}
+
 let base = AppConst.BASE
 
 export default (
   <Route path={base} component={App} >
     <Route path={base+"/Home"} getComponent={home}  /> 
-    <Route path={base+"/test"} getComponent={test}  /> 
+    <Route path={base+"/test"} getComponent={test}  />
+    <Route path={base+"/demo"} getComponent={demo}  /> 
     <Route path={"*"} getComponent={com404} />
   </Route>
 )

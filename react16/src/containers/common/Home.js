@@ -30,15 +30,21 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className='container-text container container-text'>
+      <div className='container'>
+      <Link to='/demo' > Demo </Link>
+       <br/>
        <Link to='/test' > test </Link>
+       <br/>
        <Link to='/404'>404</Link>
+       <br/>
        <Button icon='search' onClick={()=>{
          this.context.router.push({ pathname: "/home", query: {
            test:3224
          } })
        }}>home</Button>
+       <br/>
         <img src={AppConst.IMGSRC['LOGO']} />
+        <br/>
         <img src={logo} />
       </div>
     )
