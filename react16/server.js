@@ -1,3 +1,4 @@
+var mockService = require('./mockService')
 var webpack = require('webpack')
 var cp = require('child_process')
 var webpackDevMiddleware = require('webpack-dev-middleware')
@@ -8,44 +9,52 @@ var app = express()
 var port = 9000
 
 var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { 
-	noInfo: true, 
-	publicPath: config.output.publicPath,
-	hot: true,
-	watchOptions: {
-	    aggregateTimeout: 300,
-	    poll: 1000 // is this the same as specifying --watch-poll?
-	}
+app.use(webpackDevMiddleware(compiler, {
+  noInfo: true,
+  publicPath: config.output.publicPath,
+  hot: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    poll: 1000 // is this the same as specifying --watch-poll?
+  }
 }))
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(__dirname + '/'));
 
-app.get("/myapi", function(req, res) {
-  var json ={
-  "data": {
-    "respCode": "00000000",
-    "respMsg": "处理成功",
-    "value": 1 //1-签约成功，0签约失败，2-已经签约
+app.get("/myapi", function (req, res) {
+  var json = {
+    "data": {
+      "respCode": "00000000",
+      "respMsg": "处理成功",
+      "value": 1 //1-签约成功，0签约失败，2-已经签约
+    }
   }
-}
-  setTimeout(function(){
+  setTimeout(function () {
     res.send(json)
-  },100)
+  }, 100)
 })
 
-app.get("/", function(req, res) {
+app.get("/api/*", function (req, res) {
+  console.log(req.originalUrl)
+  var data = mockService(req.originalUrl)
+  setTimeout(function () {
+    res.send(data)
+  }, 100)
+})
+
+app.get("/", function (req, res) {
   res.sendFile(__dirname + '/src/index_dev.html')
 })
 
-app.get("/*", function(req, res) {
+app.get("/*", function (req, res) {
   res.sendFile(__dirname + '/src/index_dev.html')
 })
 
-app.listen(port, function(error) {
+app.listen(port, function (error) {
   if (error) {
     console.error(error)
   } else {
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
-    cp.exec('open http://localhost:9000/home')    
+    cp.exec('open http://localhost:9000/home')
   }
 })
