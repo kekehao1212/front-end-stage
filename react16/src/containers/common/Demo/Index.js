@@ -21,7 +21,6 @@ class Index extends Component {
   }
   componentDidMount(){
     document.title = 'home'
-    console.log(test)
   }
   render() {
     return (
