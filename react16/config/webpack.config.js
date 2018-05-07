@@ -1,39 +1,40 @@
 var path = require('path')
 var webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 var publishVersion = require('./publishVersion')
-var pkg = require('./package.json')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-var baseurl = '\\/assets/img'
-var fonturl = '\\/assets/iconfont/iconfont'
-process.env.NODE_ENV = 'production'
-process.env.HOT = false
-const publicPath = '/assets/' + publishVersion + '/js/'
+var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+var baseurl = '\\/src/assets/img'
+var fonturl = '\\/src/assets/iconfont/iconfont'
+process.env.NODE_ENV = 'development'
+process.env.HOT = true
+console.log('path : ' + __dirname)
+const publicPath = '/static/'
+var PATHS = require('./PATHS');
 
 module.exports = {
+  devtool: 'cheap-module-eval-source-map',
   entry: {
-    index: './src/index',
+    index: [
+      'webpack-hot-middleware/client',
+      PATHS.SRC.join('index'),
+    ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button','antd/lib/input'],
+    antd: ['antd/lib/button', 'antd/lib/input'],
   },
   output: {
-    path: path.join(__dirname, 'dist/build/assets/' + publishVersion + '/js'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js',
     chunkFilename: '[name].chunk.js',
     publicPath: publicPath
   },
   plugins: [
-    new CleanWebpackPlugin('dist'),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('development')
     }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),
     new webpack.LoaderOptionsPlugin({
       test: /\.css?$/,
       options: {
@@ -42,28 +43,13 @@ module.exports = {
         }
       }
     }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: 'src/assets',
-        to: path.join(__dirname, 'dist/build/assets'),
-        force: true,
-      },
-    ]),
-    new HtmlWebpackPlugin({
-      template: `src/index_prod.html`,
-      filename: '../../../index.html',
-      minify: {
-        collapseWhitespace: false,
-      },
-    }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),
   ],
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,
     rules: [
       {
         test: /\.js$/,
-        //use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
         use: {
           loader: "babel-loader?presets[]=react,presets[]=es2015",
           options: {
@@ -74,7 +60,7 @@ module.exports = {
           }
         },
         exclude: /node_modules/,
-        include: __dirname
+        include: PATHS.ROOT
       },
       {
         test: /\.css?$/,
@@ -94,13 +80,13 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name:'[name].[ext]',
+            name: '[name].[ext]',
           }
         },
         {
           loader: 'image-webpack-loader',
           options: {
-            bpassOnDebug:false,
+            bpassOnDebug: true,
           }
         }],
       },
@@ -109,6 +95,18 @@ module.exports = {
         use: ['file-loader']
       }
     ]
-  }
+  },
+  resolve: {
+    alias: {
+      ROOT: PATHS.ROOT,
+      // 自定义路径别名
+      MOCK: PATHS.MOCK,
+      ASSETS: PATHS.SRC.join('assets'),
+      COMPONENTS: PATHS.SRC.join('components'),
+      MODULES: PATHS.SRC.join('modules'),
+      ACTIONS: PATHS.SRC.join('actions'),
+      LIBS: PATHS.SRC.join('libs'),
+      CONSTANTS: PATHS.SRC.join('constants'),
+    },
+  },
 }
-

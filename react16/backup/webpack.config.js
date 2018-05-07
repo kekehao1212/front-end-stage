@@ -10,6 +10,7 @@ process.env.NODE_ENV = 'development'
 process.env.HOT = true
 console.log('path : ' + __dirname)
 const publicPath = '/static/'
+var PATHS = require('./config/PATHS');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -94,5 +95,18 @@ module.exports = {
         use: ['file-loader']
       }
     ]
+  },
+  resolve: {
+      alias: {
+          ROOT: PATHS.ROOT,
+          // 自定义路径别名
+          MOCK: PATHS.MOCK,
+          ASSETS: PATHS.SRC.join('assets'),
+          COMPONENTS: PATHS.SRC.join('components'),
+          MODULES: PATHS.SRC.join('modules'),          
+          ACTIONS: PATHS.SRC.join('actions'), 
+          LIBS: PATHS.SRC.join('libs'),
+          CONSTANTS: PATHS.SRC.join('constants'),
+      },
   },
 }

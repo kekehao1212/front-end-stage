@@ -6,34 +6,49 @@
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { Button, DatePicker  } from 'antd'
+import * as AppActions from '../../actions/AppActions'
+import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
+import fetch from 'isomorphic-fetch'
+import {fetchAsyncGet, testResult} from '../../modules/fetch'
 
 class Home extends Component {
-    constructor(props, context) {
-        super(props, context)
-    }
-    componentDidMount() {
-        document.title = 'home'
-    }
-
-    render() {
-        return ( < div className = 'container-text container container-text' >
-            <Link to = '/test' > test </Link>  
-            <Link to = '/404' > 404 </Link>  
-            <Link to = '/home' > home </Link>  
-            <Button icon = "search" > Search </Button>  
-            <img src = { AppConst.IMGSRC['LOGO'] }/>  
-            <img src = { logo }/>  
-            <DatePicker
-            showTime
-            format="YYYY-MM-DD HH:mm:ss"
-            placeholder="Select Time"/>
-            </div >
-        )
-    }
+  constructor(props, context) {
+    super(props, context)
+  }
+  componentDidMount(){
+    document.title = 'home'
+    const { actions } = this.props
+    actions.TEST()
+    testResult()
+    var a = fetchAsyncGet('/myapi?002')
+    a.then((r)=>{
+        console.log(r)
+    })
+  }
+  render() {
+    return (
+      <div className='container'>
+      <Link to='/demo' > Demo </Link>
+       <br/>
+       <Link to='/test' > test </Link>
+       <br/>
+       <Link to='/404'>404</Link>
+       <br/>
+       <Button icon='search' onClick={()=>{
+         this.context.router.push({ pathname: "/home", query: {
+           test:3224
+         } })
+       }}>home</Button>
+       <br/>
+        <img src={AppConst.IMGSRC['LOGO']} />
+        <br/>
+        <img src={logo} />
+      </div>
+    )
+  }
 }
 
 
@@ -48,7 +63,9 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {}
+  return {
+    actions: bindActionCreators(AppActions, dispatch),
+  }
 }
 
 export default connect(

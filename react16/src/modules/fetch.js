@@ -12,6 +12,26 @@ import {
 var ajaxCnt = 0
 window._bfUserId = window._bfUserId || 'none'
 
+export async function fetchAsyncGet(url){
+	var r = await fetch(url)
+	var s = r.json()
+	return s
+}
+
+// 2s 之后返回双倍的值
+function doubleAfter2seconds(num) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(2 * num)
+        }, 1000);
+    } )
+}
+
+export async function testResult() {
+    let result = await doubleAfter2seconds(30);
+    console.log(result);
+}
+
 export function fetchGet(url, data = {}, isShowError = true, isShowLoading = true) {
 	if (ajaxCnt === 0 && isShowLoading) {
 		vera.showLoading()
