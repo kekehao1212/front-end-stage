@@ -33,66 +33,24 @@ export async function testResult() {
 }
 
 export function fetchGet(url, data = {}, isShowError = true, isShowLoading = true) {
-	if (ajaxCnt === 0 && isShowLoading) {
-		vera.showLoading()
-	}
-	isShowLoading&&ajaxCnt++
-	data.client = 'H5'
-	let clientInfo = client()
-	data.env = data.env || encodeURIComponent(JSON.stringify(clientInfo))
-	data.fetchts = data.ts || (+(new Date()).getTime() + '')
-	let endMars = readEndMars()
-	//_client_front_end_request
-	data.client_dev = JSON.stringify({
-		flag: window._bfUserId,
-		ac: endMars && endMars.ext
-	})
 	var URL = paramObj2paramStr(url, data)
 	var options = {
 		credentials: 'include',
 		mode: 'cors',
 		headers:{}
 	}
-	options.headers["X-Vpal-Ver"] = clientInfo.XVpalVer	
-	if (!!endMars && Math.abs((new Date()).getTime() - endMars.timestamp) <= 1000 * 60 * 15) {
-		options.headers["X-Vpal-Stat-Scene"] = endMars.sc
-		options.headers["X-Vpal-Stat-Ext"] = endMars.ext
-		//base.getAppBaseInfo	获取app基础参数接口
-		//当前用户的imei（android）或者idfa（ios）：
-		//BASEINFO_TYPE_VENDOR_UUID(需要做aes加密)
-	}
+
 	return fetch(URL, options)
 		.then((response) => {
-			isShowLoading&&ajaxCnt--
-			if (ajaxCnt === 0 && isShowLoading) {
-				vera.hideLoading()
-			}
 			return response.json()
 		})
 		.then((json) => {
 			if (json === undefined) {
 				throw { code: 500, sub_msg: '系统繁忙，请稍后尝试' }
 			}
-			if (json.code === 400 || json.code === 405) {
-				let currentUrl = location.href
-				if ((paramStr2paramObj(currentUrl)).moveToken) {
-					return json
-				}
-				redirect()
-				//throw {code:400,sub_msg:'登录失效'}
-			} else if (json.code != 0) {
-				isShowError && showErrorDialog({
-					content: json.sub_msg
-				})
-			}
 			return json
 		})
 		.catch(e => {
-			
-			vera.hideLoading()
-			isShowError && showErrorDialog({
-				content: '系统繁忙，请稍后尝试'
-			})
 		})
 		.then((json) => {
 			return json || {
@@ -103,21 +61,6 @@ export function fetchGet(url, data = {}, isShowError = true, isShowLoading = tru
 }
 
 export function fetchPost(url, data = {}, isShowError = true, isShowLoading = true) {
-	if (ajaxCnt === 0 && isShowLoading) {
-		vera.showLoading()
-	}
-	isShowLoading&&ajaxCnt++
-	data.client = 'H5'
-	let clientInfo = client()
-	data.env = data.env || JSON.stringify(clientInfo)
-	data.fetchts = data.ts || (+(new Date()).getTime() + '')
-	let endMars = readEndMars()
-	//_client_front_end_request
-	let client_dev = JSON.stringify({
-		flag: window._bfUserId,
-		ac: endMars && endMars.ext
-	})
-	var URL = url + `?client_dev=${client_dev}`
 	var options = {
 		credentials: 'include',
 		method: 'POST',
@@ -128,38 +71,18 @@ export function fetchPost(url, data = {}, isShowError = true, isShowLoading = tr
 		},
 		body: toQueryString(data)
 	}
-	options.headers["X-Vpal-Ver"] = clientInfo.XVpalVer	
-	if (!!endMars && Math.abs((new Date()).getTime() - endMars.timestamp) <= 1000 * 60 * 15) {
-		options.headers["X-Vpal-Stat-Scene"] = endMars.sc
-		options.headers["X-Vpal-Stat-Ext"] = endMars.ext
-	}
+	
 	return fetch(URL, options)
 		.then((response) => {
-			isShowLoading&&ajaxCnt--
-			if (ajaxCnt === 0 && isShowLoading) {
-				vera.hideLoading()
-			}
 			return response.json()
 		})
 		.then((json) => {
 			if (json === undefined) {
 				throw { code: 500, sub_msg: '系统繁忙，请稍后尝试' }
 			}
-			if (json.code === 400 || json.code === 405) {
-				redirect()
-				//throw {code:400,sub_msg:'登录失效'}
-			} else if (json.code != 0) {
-				isShowError && showErrorDialog({
-					content: json.sub_msg
-				})
-			}
 			return json || {}
 		})
 		.catch(e => {
-			vera.hideLoading()
-			isShowError && showErrorDialog({
-				content: '系统繁忙，请稍后尝试'
-			})
 		})
 		.then((json) => {
 			return json || {

@@ -22,6 +22,3 @@
 
   wiki:http://ant.design/components/date-picker-cn/
 	https://www.jianshu.com/p/e06044f47ab6
-
-    
-  ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "css" }]

@@ -1,5 +1,5 @@
 var json = {
-    api:'/testapi/demo1',
+    api:'/mock-api/testapi/demo1',
     response:{
         code:0,
         data:{
