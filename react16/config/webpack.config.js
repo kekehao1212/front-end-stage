@@ -56,7 +56,7 @@ module.exports = {
             presets: [
               "react", "es2015"
             ],
-            plugins: [['import', { libraryName: 'antd', style: 'less' }]]
+            plugins: [['import', { libraryName: 'antd', style: true }]]
           }
         },
         exclude: /node_modules/,
@@ -68,7 +68,11 @@ module.exports = {
       },
       {
         test: /\.less/,
-        use: ['style-loader', 'css-loader', 'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","fonturl":"\'' + fonturl + '\'"}}']
+        use: [
+          'style-loader', 
+          'css-loader', 
+          'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","@icon-url":"\'' + fonturl + '\'"}}',         
+        ]
       },
       {
         test: /\.(woff|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
@@ -108,5 +112,6 @@ module.exports = {
       LIBS: PATHS.SRC.join('libs'),
       CONSTANTS: PATHS.SRC.join('constants'),
     },
+    extensions: ['.js', '.jsx', '.less'],
   },
 }
