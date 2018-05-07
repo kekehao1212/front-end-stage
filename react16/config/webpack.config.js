@@ -11,6 +11,8 @@ process.env.HOT = true
 console.log('path : ' + __dirname)
 const publicPath = '/static/'
 var PATHS = require('./PATHS');
+var theme = require('./antd-theme.js')
+theme = JSON.stringify(theme.DEV)
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -71,7 +73,9 @@ module.exports = {
         use: [
           'style-loader', 
           'css-loader', 
-          'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","@icon-url":"\'' + fonturl + '\'"}}',         
+          'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}',  
+          "postcss-loader",
+          `less-loader?{modifyVars:${theme},"sourceMap":true}`,
         ]
       },
       {

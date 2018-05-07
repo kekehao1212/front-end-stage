@@ -30,7 +30,7 @@ class Home extends Component {
   }
   render() {
     return (
-      <div className='container'>
+      <div className='container container-logo'>
       <Link to='/demo' > Demo </Link>
        <br/>
        <Link to='/test' > test </Link>

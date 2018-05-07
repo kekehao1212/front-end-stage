@@ -10,6 +10,8 @@ process.env.NODE_ENV = 'production'
 process.env.HOT = false
 const publicPath = '/assets/' + publishVersion + '/'//http:localhost
 var PATHS = require('./PATHS');
+var theme = require('./antd-theme.js')
+theme = JSON.stringify(theme.PROD)
 
 module.exports = {
   entry: {
@@ -85,7 +87,9 @@ module.exports = {
         use: [
           'style-loader', 
           'css-loader', 
-          'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}!postcss-loader!less-loader?{"modifyVars":{"baseurl":"\'' + baseurl + '\'","@icon-url":"\'' + fonturl + '\'"}}'
+          'autoprefixer-loader?{browsers: ["> 1%","last 4 versions", "iOS 7","Android >= 4.0"]}',  
+          "postcss-loader",
+          `less-loader?{modifyVars:${theme},"sourceMap":false}`,
         ]
       },
       {

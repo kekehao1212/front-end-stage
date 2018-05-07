@@ -13,7 +13,6 @@ import * as AppConst from 'CONSTANTS/AppConst'
 import fetch from 'isomorphic-fetch'
 import {fetchAsyncGet, testResult} from 'MODULES/fetch'
 import Layout from 'COMPONENTS/Layout'
-import test from '../../../../mockService'
 
 class Index extends Component {
   constructor(props, context) {
