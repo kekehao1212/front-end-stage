@@ -17,7 +17,7 @@ export const PROXY_URL =  {
 	workflow: SERVER_DOMAIN.WORKFLOW + PROXY_API[PROXY_ENV] + '/workflow/workflowHome'
 }
 export const SERVER_URL = '/api'
-export const BASE = ''
+export const BASE = '/'
 const STATIC_DOMAIN = ''
 const STATIC_PUB_DOMAIN = ''
 const ASSETS_ROOT_MAP =  {

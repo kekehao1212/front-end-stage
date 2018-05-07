@@ -6,6 +6,7 @@
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import {browserHistory} from 'react-router';
 import * as AppActions from '../../actions/AppActions'
 import { Button } from 'antd';
 import * as AppConst from '../../constants/AppConst'
@@ -39,7 +40,7 @@ class Home extends Component {
        <Link to='/404'>404</Link>
        <br/>
        <Button icon='search' onClick={()=>{
-         this.context.router.push({ pathname: "/home", query: {
+         browserHistory.push({ pathname: "/home", query: {
            test:3224
          } })
        }}>home</Button>
