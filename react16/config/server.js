@@ -1,3 +1,4 @@
+var path = require('path')
 var mockService = require('../mockService')
 var webpack = require('webpack')
 var cp = require('child_process')
@@ -30,7 +31,8 @@ app.use(webpackDevMiddleware(compiler, {
   watchOptions: {
     aggregateTimeout: 300,
     poll: 1000 // is this the same as specifying --watch-poll?
-  }
+  },
+  //index:'index.html'
 }))
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(PATHS.ROOT + '/'));
@@ -48,7 +50,7 @@ app.get("/myapi", function (req, res) {
   }, 100)
 })
 
-app.get("/api/*", function (req, res) {
+app.get("/mock-api/*", function (req, res) {
   console.log(req.originalUrl)
   var data = mockService(req.originalUrl)
   setTimeout(function () {
@@ -63,6 +65,7 @@ app.get("/", function (req, res) {
 app.get("/*", function (req, res) {
   res.sendFile(PATHS.ROOT + '/src/index_dev.html')
 })
+
 
 app.listen(port, function (error) {
   if (error) {

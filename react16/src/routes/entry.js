@@ -42,6 +42,12 @@ const login = (location, callback) => {
   }, 'login')
 }
 
+const register = (location, callback) => {
+  require.ensure([], require => {
+    callback(null, require('../containers/common/Register').default)
+  }, 'register')
+}
+
 const demo = (location, callback) => {
   require.ensure([], require => {
     callback(null, require('../containers/common/Demo/Index').default)
@@ -56,6 +62,7 @@ export default (
     <Route path={base+"Home"} getComponent={home} onEnter={(nextState, replaceState)=>{}} /> 
     <Route path={base+"test"} getComponent={test}  />
     <Route path={base+"login"} getComponent={login}  />
+    <Route path={base+"register"} getComponent={register}  />
     <Route path={base+"demo"} getComponent={demo}  onLeave={(nextState, replaceStatea)=>{}}/> 
     <Route path={"*"} getComponent={com404} />
   </Route>

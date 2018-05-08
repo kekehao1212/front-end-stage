@@ -13,30 +13,30 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-import NormalLoginForm from './_components/NormalLoginForm'
+import RegistrationForm from './_components/RegistrationForm'
 const FormItem = Form.Item;
 
 //const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
 
-class Login extends React.Component {
+class Register extends React.Component {
     constructor(props, context) {
     super(props, context)
     }
     componentDidMount(){
-        document.title = 'Login'
+        document.title = 'Register'
     }
 
     render() {
 
       return (
         <div>
-        <NormalLoginForm />
+        <RegistrationForm />
         </div>
       )
     }
   }
 
-Login.contextTypes = {
+  Register.contextTypes = {
    router: PropTypes.object
 }
 
@@ -54,5 +54,5 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Login)
+)(Register)
 

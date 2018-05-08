@@ -2,7 +2,6 @@ var path = require('path')
 var webpack = require('webpack')
 var publishVersion = require('./publishVersion')
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 var baseurl = '\\/src/assets/img'
 var fonturl = '\\/src/assets/iconfont/iconfont'

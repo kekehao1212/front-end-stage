@@ -1,8 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
 var publishVersion = require('./publishVersion')
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-var FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 var baseurl = '\\/src/assets/img'
 var fonturl = '\\/src/assets/iconfont/iconfont'
@@ -22,7 +20,7 @@ module.exports = {
       PATHS.SRC.join('index'),
     ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button', 'antd/lib/input'],
+    antd: ['antd/lib/button', 'antd/lib/input', 'antd/lib/form'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -46,6 +44,13 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),
+    new HtmlWebpackPlugin({
+      template: PATHS.SRC.join(`index_dev.html`),
+      filename:  'index.html',
+      minify: {
+        collapseWhitespace: false,
+      },
+    }),
   ],
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,

@@ -39,15 +39,22 @@ class Home extends Component {
        <br/>
        <Link to='/404'>404</Link>
        <br/>
+       <Link to='/login'>login</Link>
+       <br/>
+       <Link to='/register'>register</Link>
+       <br/>
        <Button icon='search' onClick={()=>{
          browserHistory.push({ pathname: "/home", query: {
            test:3224
          } })
        }}>home</Button>
-       <br/>
+        <br/>
+        <div style={{display:'none'}}>
         <img src={AppConst.IMGSRC['LOGO']} />
         <br/>
         <img src={logo} />
+        </div>
+        
       </div>
     )
   }
