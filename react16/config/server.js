@@ -12,6 +12,7 @@ var PATHS = require('./PATHS');
 var proxy = require('http-proxy-middleware');
 var compiler = webpack(config)
 var proxyTable = require('../mockService/proxyTable');
+var DIST_DIR = path.join(__dirname, "static")
 // proxy api requests
 // 顺序必须在 bodyParser 之前！！！
 Object.keys(proxyTable).forEach(function(context) {
@@ -32,7 +33,7 @@ app.use(webpackDevMiddleware(compiler, {
     aggregateTimeout: 300,
     poll: 1000 // is this the same as specifying --watch-poll?
   },
-  //index:'index.html'
+  index:'index.html'
 }))
 app.use(webpackHotMiddleware(compiler))
 app.use(express.static(PATHS.ROOT + '/'));
@@ -58,14 +59,37 @@ app.get("/mock-api/*", function (req, res) {
   }, 100)
 })
 
-app.get("/", function (req, res) {
-  res.sendFile(PATHS.ROOT + '/src/index_dev.html')
+app.get("/", function (req, res,next) {
+  var viewname = 'index.html';
+  var filepath = path.join(compiler.outputPath, viewname);
+    
+  // 使用webpack提供的outputFileSystem
+  compiler.outputFileSystem.readFile(filepath, function(err, result) {
+      if (err) {
+          // something error
+          return next(err);
+      }
+      res.set('content-type', 'text/html');
+      res.send(result);
+      res.end();
+  });
 })
 
-app.get("/*", function (req, res) {
-  res.sendFile(PATHS.ROOT + '/src/index_dev.html')
+ app.get("/*", function (req, res,next) {
+  var viewname = 'index.html';
+  var filepath = path.join(compiler.outputPath, viewname);
+    
+  // 使用webpack提供的outputFileSystem
+  compiler.outputFileSystem.readFile(filepath, function(err, result) {
+      if (err) {
+          // something error
+          return next(err);
+      }
+      res.set('content-type', 'text/html');
+      res.send(result);
+      res.end();
+  });
 })
-
 
 app.listen(port, function (error) {
   if (error) {
