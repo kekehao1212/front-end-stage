@@ -22,7 +22,7 @@ class Home extends Component {
       visible: false,
       condition: true, // Whether meet the condition, if not show popconfirm.
     }
-   // this.changeCondition = this.changeCondition.bind(this)
+    this.changeCondition = this.changeCondition.bind(this)
     this.confirm = this.confirm.bind(this)
     this.cancel = this.cancel.bind(this)
     this.handleVisibleChange = this.handleVisibleChange.bind(this)

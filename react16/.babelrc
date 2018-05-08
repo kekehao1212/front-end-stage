@@ -6,6 +6,7 @@
         }
     },
     "plugins": [
+        "transform-class-properties",
         "transform-flow-comments",
         "syntax-dynamic-import",
         "dynamic-import-webpack", ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]

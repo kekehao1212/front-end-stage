@@ -9,7 +9,7 @@ import configureStore from './store/configureStore'
 import './stylesheets/style.less'
 require("babel-core/register");
 // require("babel-core").transform("code", {
-//   presets: ["stage-2"]
+//   plugins: ["transform-class-properties"]
 // });
 const store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)

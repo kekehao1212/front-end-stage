@@ -13,6 +13,7 @@ import * as AppConst from 'CONSTANTS/AppConst'
 import fetch from 'isomorphic-fetch'
 import {fetchAsyncGet, testResult} from 'MODULES/fetch'
 import Layout from 'COMPONENTS/Layout'
+import TableData from './_components/TableData'
 
 class Index extends Component {
   constructor(props, context) {
@@ -25,6 +26,7 @@ class Index extends Component {
     return (
        <Layout>
          <div className="demo">this is content </div>
+         <TableData/>
        </Layout>
     )
   }

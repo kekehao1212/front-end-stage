@@ -28,6 +28,14 @@ module.exports = {
             return path.replace('/mock-api', '/api') 
         }
     },
+    '/rand-api': {
+        target: 'https://randomuser.me',
+        changeOrigin: true,
+        pathRewrite: function (path, req) { 
+            console.log('current request api : ' + path)
+            return path.replace('/rand-api', '/api') 
+        }
+    },
     '/testapi': {
         target: 'http://localhost:9000',
         changeOrigin: true,
