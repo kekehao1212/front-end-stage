@@ -2,7 +2,7 @@ export const ENV = window.ENV || 'PROD'//'RELEASE' //DEV PROD TEST RELEASE
 export const DEBUG = ENV === 'PROD'?false:true // true false 
 
 // MOCK：本地mock服务, PROXY代理到项目服务器：
-export var PROXY_ENV = "PROXY"
+export var PROXY_ENV = "MOCK"
 PROXY_ENV = DEBUG?PROXY_ENV:'PROD'
 export const SERVER_DOMAIN =  {
 	WORKFLOW:DEBUG?'':'http://plat-gw.jd.com',

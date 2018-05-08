@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {browserHistory} from 'react-router';
 import * as AppActions from '../../actions/AppActions'
-import { Button } from 'antd';
+import { Button , Spin, Icon ,Popconfirm,Switch,message} from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
@@ -18,6 +18,14 @@ import {fetchAsyncGet, testResult,fetchGet} from '../../modules/fetch'
 class Home extends Component {
   constructor(props, context) {
     super(props, context)
+    this.state = {
+      visible: false,
+      condition: true, // Whether meet the condition, if not show popconfirm.
+    }
+   // this.changeCondition = this.changeCondition.bind(this)
+    this.confirm = this.confirm.bind(this)
+    this.cancel = this.cancel.bind(this)
+    this.handleVisibleChange = this.handleVisibleChange.bind(this)
   }
   componentDidMount(){
     document.title = 'home'
@@ -30,7 +38,32 @@ class Home extends Component {
     })
     fetchGet(AppConst.PROXY_URL.workflow)
   }
+  changeCondition(value){
+    this.setState({ condition: value });
+  }
+  confirm(){
+    this.setState({ visible: false });
+    message.success('Next step.');
+  }
+  cancel(){
+    this.setState({ visible: false });
+    message.error('Click on cancel.');
+  }
+  handleVisibleChange(visible){
+    if (!visible) {
+      this.setState({ visible });
+      return;
+    }
+    // Determining condition before show the popconfirm.
+    console.log(this.state.condition);
+    if (this.state.condition) {
+      this.confirm(); // next step
+    } else {
+      this.setState({ visible }); // show the popconfirm
+    }
+  }
   render() {
+    const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     return (
       <div className='container container-logo'>
       <Link to='/demo' > Demo </Link>
@@ -44,11 +77,28 @@ class Home extends Component {
        <Link to='/register'>register</Link>
        <br/>
        <Button icon='search' onClick={()=>{
-         browserHistory.push({ pathname: "/home", query: {
-           test:3224
-         } })
+         fetchGet(AppConst.PROXY_URL.workflow)
        }}>home</Button>
         <br/>
+
+        <div>
+          <Popconfirm
+            title="Are you sure delete this task?"
+            visible={this.state.visible}
+            onVisibleChange={this.handleVisibleChange}
+            onConfirm={this.confirm}
+            onCancel={this.cancel}
+            okText="Yes"
+            cancelText="No"
+          >
+            <a href="#">Delete a task</a>
+          </Popconfirm>
+          <br />
+          <br />
+          Whether directly execute：<Switch defaultChecked onChange={this.changeCondition} />
+        </div>
+
+
         <div style={{display:'none'}}>
         <img src={AppConst.IMGSRC['LOGO']} />
         <br/>

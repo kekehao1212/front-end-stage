@@ -51,13 +51,13 @@ app.get("/myapi", function (req, res) {
   }, 100)
 })
 
-app.get("/mock-api/*", function (req, res) {
-  console.log(req.originalUrl)
+app.get("/api/*", function (req, res) {
   var data = mockService(req.originalUrl)
   setTimeout(function () {
     res.send(data)
   }, 100)
 })
+
 
 app.get("/", function (req, res,next) {
   var viewname = 'index.html';

@@ -30,3 +30,5 @@
 
   "webpack-dev-middleware": "^3.1.3",
   "webpack-hot-middleware": "^2.22.1",
+
+   "babel-loader": "^6.2.0",

@@ -8,9 +8,9 @@ import {
 	readEndMars
 }
 	from './pub/endMars'
+import { message } from 'antd'
 
 var ajaxCnt = 0
-window._bfUserId = window._bfUserId || 'none'
 
 export async function fetchAsyncGet(url){
 	var r = await fetch(url)
@@ -32,35 +32,43 @@ export async function testResult() {
     console.log(result);
 }
 
-export function fetchGet(url, data = {}, isShowError = true, isShowLoading = true) {
-	var URL = paramObj2paramStr(url, data)
-	var options = {
-		credentials: 'include',
-		mode: 'cors',
-		headers:{}
-	}
-
+function fetchCommon(URL, options){
 	return fetch(URL, options)
 		.then((response) => {
 			return response.json()
 		})
 		.then((json) => {
 			if (json === undefined) {
-				throw { code: 500, sub_msg: '系统繁忙，请稍后尝试' }
+				throw { code: 500, msg: '系统繁忙，请稍后尝试' }
+			}else if(json&&json.code==500){
+				throw { code: 500, msg: '系统繁忙，请稍后尝试'||json.msg }
 			}
 			return json
 		})
 		.catch(e => {
+			message.destroy()
+			message.error('系统繁忙，请稍后尝试'||e.msg,2);
 		})
 		.then((json) => {
 			return json || {
 				code: 500,
-				sub_msg: '系统繁忙，请稍后尝试'
+				msg: '系统繁忙，请稍后尝试'
 			}
 		})
 }
+export function fetchGet(url, data = {}, isShowError = true, isShowLoading = true) {
+	//message.loading('Action in progress..', 0.5);
+	var URL = paramObj2paramStr(url, data)
+	var options = {
+		credentials: 'include',
+		mode: 'cors',
+		headers:{}
+	}
+	return fetchCommon(URL, options)
+}
 
 export function fetchPost(url, data = {}, isShowError = true, isShowLoading = true) {
+	//message.loading('Action in progress..', 1);
 	var options = {
 		credentials: 'include',
 		method: 'POST',
@@ -72,24 +80,7 @@ export function fetchPost(url, data = {}, isShowError = true, isShowLoading = tr
 		body: toQueryString(data)
 	}
 	
-	return fetch(URL, options)
-		.then((response) => {
-			return response.json()
-		})
-		.then((json) => {
-			if (json === undefined) {
-				throw { code: 500, sub_msg: '系统繁忙，请稍后尝试' }
-			}
-			return json || {}
-		})
-		.catch(e => {
-		})
-		.then((json) => {
-			return json || {
-				code: 500,
-				sub_msg: '系统繁忙，请稍后尝试'
-			}
-		})
+	return fetchCommon(URL, options)
 }
 
 function toQueryString(obj) {
