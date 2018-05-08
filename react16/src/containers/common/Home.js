@@ -29,6 +29,9 @@ class Home extends Component {
     })
     fetchGet(AppConst.PROXY_URL.workflow)
   }
+  test = ()=>{
+    console.log(this.state)
+  }
   render() {
     return (
       <div className='container container-logo'>
@@ -39,6 +42,8 @@ class Home extends Component {
        <Link to='/404'>404</Link>
        <br/>
        <Button icon='search' onClick={()=>{
+         this.test()
+         return
          this.context.router.push({ pathname: "/home", query: {
            test:3224
          } })
