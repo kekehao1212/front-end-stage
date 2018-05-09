@@ -22,10 +22,6 @@ class Home extends Component {
       visible: false,
       condition: true, // Whether meet the condition, if not show popconfirm.
     }
-    this.changeCondition = this.changeCondition.bind(this)
-    this.confirm = this.confirm.bind(this)
-    this.cancel = this.cancel.bind(this)
-    this.handleVisibleChange = this.handleVisibleChange.bind(this)
   }
   componentDidMount(){
     document.title = 'home'
@@ -38,18 +34,18 @@ class Home extends Component {
     })
     fetchGet(AppConst.PROXY_URL.workflow)
   }
-  changeCondition(value){
+  changeCondition =(value)=>{
     this.setState({ condition: value });
   }
-  confirm(){
+  confirm =()=>{
     this.setState({ visible: false });
     message.success('Next step.');
   }
-  cancel(){
+  cancel =()=>{
     this.setState({ visible: false });
     message.error('Click on cancel.');
   }
-  handleVisibleChange(visible){
+  handleVisibleChange=(visible)=>{
     if (!visible) {
       this.setState({ visible });
       return;

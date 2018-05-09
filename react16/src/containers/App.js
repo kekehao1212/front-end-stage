@@ -7,7 +7,7 @@
  *
  */
 
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -20,7 +20,8 @@ class App extends Component {
   componentDidMount() {
   }
   render() {
-    const { children ,stores , actions,location } = this.props
+    const { children, stores, actions, location } = this.props
+    var appStores = stores.appReducers
     return (
       <div >
         {children}

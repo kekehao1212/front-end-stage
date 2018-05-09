@@ -67,12 +67,12 @@ module.exports = {
         test: /\.js$/,
         //use: [ 'babel-loader?presets[]=react,presets[]=es2015' ],
         use: {
-          loader: "babel-loader?presets[]=react,presets[]=es2015",
+          loader: "babel-loader",
           options: {
             presets: [
-              "react", "es2015"
+              "react", "es2015","stage-0"
             ],
-            plugins: [['import', { libraryName: 'antd', style: true  }]]
+            plugins: [['import', { libraryName: 'antd', style: true }]]
           }
         },
         exclude: /node_modules/,
