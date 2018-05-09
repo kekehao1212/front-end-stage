@@ -9,7 +9,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div className='layout-footer'>
-        <h1>This is Footer block</h1>
+        
       </div>
     )
   }

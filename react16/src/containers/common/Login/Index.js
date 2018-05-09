@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import NormalLoginForm from './_components/NormalLoginForm'
+import Layout from 'COMPONENTS/Layout'
 const FormItem = Form.Item;
 
 //const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
@@ -27,11 +28,11 @@ class Login extends React.Component {
     }
 
     render() {
-
+      const urlObject = {currentUrl:'/login'}
       return (
-        <div>
+        <Layout data={urlObject}>
         <NormalLoginForm />
-        </div>
+        </Layout>
       )
     }
   }

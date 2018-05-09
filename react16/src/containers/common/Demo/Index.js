@@ -23,9 +23,9 @@ class Index extends Component {
     document.title = 'home'
   }
   render() {
+    const urlObject = {currentUrl:'/demo'}
     return (
-       <Layout>
-         <div className="demo">this is content </div>
+      <Layout data={urlObject}>
          <TableData/>
        </Layout>
     )

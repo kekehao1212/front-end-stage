@@ -15,6 +15,7 @@ import logo from '../../assets/img/logo.png'
 import fetch from 'isomorphic-fetch'
 import {fetchAsyncGet, testResult,fetchGet} from '../../modules/fetch'
 import IndexService from 'SERVICES/index'
+import Layout from 'COMPONENTS/Layout'
 
 class Home extends Component {
   state = {
@@ -58,8 +59,9 @@ class Home extends Component {
   }
   render() {
     const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
+    const urlObject = {currentUrl:'/home'}
     return (
-      <div className='container container-logo'>
+      <Layout data={urlObject}>
       <Link to='/demo' > Demo </Link>
        <br/>
        <Link to='/test' > test </Link>
@@ -72,6 +74,7 @@ class Home extends Component {
        <br/>
        <Button icon='search' onClick={()=>{
          IndexService.getWorkflow()
+         browserHistory.push({pathname:'/demo'})
        }}>home</Button>
         <br/>
 
@@ -99,7 +102,7 @@ class Home extends Component {
         <img src={logo} />
         </div>
         
-      </div>
+      </Layout>
     )
   }
 }

@@ -14,6 +14,7 @@ import { connect } from 'react-redux'
 import { Button } from 'antd';
 import { Link } from 'react-router'
 import * as AppConst from '../../constants/AppConst'
+import Layout from 'COMPONENTS/Layout'
 
 class Test extends Component {
   constructor(props, context) {
@@ -24,14 +25,15 @@ class Test extends Component {
   }
   
   render() {
+    const urlObject = {currentUrl:'/test'}
     return (
-      <div className='container-text container container-text'>
+      <Layout data={urlObject}>
         Test TestTestTestTest
       <Link to='/test' > test</Link>
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
          <Button>Hello world! test</Button>
-      </div>
+      </Layout>
     )
   }
 }
