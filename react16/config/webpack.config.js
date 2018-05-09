@@ -20,7 +20,13 @@ module.exports = {
       PATHS.SRC.join('index'),
     ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd'],
+    antd: [
+      'antd/lib/button','antd/lib/input'
+    ,'antd/lib/form','antd/lib/checkbox'
+    ,'antd/lib/switch','antd/lib/radio'
+    ,'antd/lib/spin','antd/lib/icon'
+    ,'antd/lib/message','antd/lib/upload'
+    ,'antd/lib/date-picker','antd/lib/time-picker'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
