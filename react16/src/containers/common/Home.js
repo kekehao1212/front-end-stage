@@ -14,14 +14,12 @@ import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
 import fetch from 'isomorphic-fetch'
 import {fetchAsyncGet, testResult,fetchGet} from '../../modules/fetch'
+import IndexService from 'SERVICES/index'
 
 class Home extends Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      visible: false,
-      condition: true, // Whether meet the condition, if not show popconfirm.
-    }
+  state = {
+    visible: false,
+    condition: true, // Whether meet the condition, if not show popconfirm.
   }
   componentDidMount(){
     document.title = 'home'
@@ -32,7 +30,7 @@ class Home extends Component {
     a.then((r)=>{
         console.log(r)
     })
-    fetchGet(AppConst.PROXY_URL.workflow)
+    IndexService.getWorkflow()
   }
   changeCondition =(value)=>{
     this.setState({ condition: value });
@@ -73,7 +71,7 @@ class Home extends Component {
        <Link to='/register'>register</Link>
        <br/>
        <Button icon='search' onClick={()=>{
-         fetchGet(AppConst.PROXY_URL.workflow)
+         IndexService.getWorkflow()
        }}>home</Button>
         <br/>
 

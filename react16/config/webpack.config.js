@@ -20,7 +20,7 @@ module.exports = {
       PATHS.SRC.join('index'),
     ],
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button', 'antd/lib/input', 'antd/lib/form'],
+    antd: ['antd'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -43,7 +43,7 @@ module.exports = {
         }
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor', 'antd'] }),
+    new webpack.optimize.CommonsChunkPlugin({ names: ['vendor','antd'] }),
     new HtmlWebpackPlugin({
       template: PATHS.SRC.join(`index_dev.html`),
       filename:  'index.html',
@@ -118,7 +118,9 @@ module.exports = {
       COMPONENTS: PATHS.SRC.join('components'),
       MODULES: PATHS.SRC.join('modules'),
       ACTIONS: PATHS.SRC.join('actions'),
+      REDUCERS: PATHS.SRC.join('reducers'),
       LIBS: PATHS.SRC.join('libs'),
+      SERVICES: PATHS.SRC.join('services'),
       CONSTANTS: PATHS.SRC.join('constants'),
     },
     extensions: ['.js', '.jsx', '.less'],

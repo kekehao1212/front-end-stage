@@ -17,7 +17,7 @@ module.exports = {
   entry: {
     index: PATHS.SRC.join('index'),
     vendor: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-redux', 'redux', 'redux-thunk', 'isomorphic-fetch'],
-    antd: ['antd/lib/button','antd/lib/input'],
+    antd: ['antd'],
   },
   output: {
     path: PATHS.BUILD.join('assets/' + publishVersion),
@@ -127,7 +127,9 @@ module.exports = {
           COMPONENTS: PATHS.SRC.join('components'),
           MODULES: PATHS.SRC.join('modules'),          
           ACTIONS: PATHS.SRC.join('actions'), 
+          REDUCERS: PATHS.SRC.join('reducers'),
           LIBS: PATHS.SRC.join('libs'),
+          SERVICES: PATHS.SRC.join('services'),
           CONSTANTS: PATHS.SRC.join('constants'),
       },
   },
