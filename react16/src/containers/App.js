@@ -12,7 +12,7 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AppActions from '../actions/AppActions'
-import { Button , Spin, Icon } from 'antd';
+
 class App extends Component {
   constructor(props) {
     super(props)
