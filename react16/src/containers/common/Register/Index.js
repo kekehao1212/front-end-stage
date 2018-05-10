@@ -31,9 +31,9 @@ class Register extends React.Component {
     render() {
       const urlObject = {currentUrl:'/register'}
       return (
-        <Layout data={urlObject}>
+        <div>
         <RegistrationForm />
-        </Layout>
+        </div>
       )
     }
   }

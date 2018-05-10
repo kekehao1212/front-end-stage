@@ -13,3 +13,11 @@ export function TEST() {
 		type: AppConst.TEST
 	}
 }
+
+
+export function GET_MENU_LIST(data){
+	return {
+		type: AppConst.GET_MENU_LIST,
+		data:data
+	}
+}

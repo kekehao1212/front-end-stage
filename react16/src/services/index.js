@@ -4,16 +4,15 @@ import * as AppConst from 'CONSTANTS/AppConst'
 /**
  * 首页所用到的 API
  */
-class IndexService {
 
-  /**
-   * 获取首页数据
-   * @resolve {Object} / null
-   */
-  getWorkflow (option={}) {
+  export function getWorkflow(option={}){
     return fetchGet (AppConst.PROXY_URL.workflow, option)
   }
-}
 
-// 实例化后导出，全局单例
-export default new IndexService()
+  export function getMenuList(option={}) {
+    return fetchGet (AppConst.PROXY_URL.menu, option).then((json)=>{
+      if(json&&json.code == 0){
+        this.actions.GET_MENU_LIST(json)
+      }
+    })
+  }

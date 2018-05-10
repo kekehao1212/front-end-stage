@@ -14,7 +14,7 @@ import { Link } from 'react-router'
 import logo from '../../assets/img/logo.png'
 import fetch from 'isomorphic-fetch'
 import {fetchAsyncGet, testResult,fetchGet} from '../../modules/fetch'
-import IndexService from 'SERVICES/index'
+import * as IndexService from 'SERVICES/index'
 import Layout from 'COMPONENTS/Layout'
 
 class Home extends Component {
@@ -61,7 +61,7 @@ class Home extends Component {
     const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
     const urlObject = {currentUrl:'/home'}
     return (
-      <Layout data={urlObject}>
+      <div>
       <Link to='/demo' > Demo </Link>
        <br/>
        <Link to='/test' > test </Link>
@@ -102,7 +102,7 @@ class Home extends Component {
         <img src={logo} />
         </div>
         
-      </Layout>
+      </div>
     )
   }
 }

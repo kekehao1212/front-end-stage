@@ -30,7 +30,7 @@ class Com404 extends Component {
   render() {
     const urlObject = {currentUrl:'/404'}
     return (
-      <Layout data={urlObject}>
+      <div>
         <div className="com404" style={{marginTop:60+ 'px'}}>404 , not found</div>
         <div className="row " style={{marginTop:100+ 'px'}}>
           <div className="col padding-h-30">
@@ -42,7 +42,7 @@ class Com404 extends Component {
        <Link to='/home' >home</Link>
         <Button>Hello world!</Button>
         <Input />
-      </Layout>
+      </div>
     )
   }
 }

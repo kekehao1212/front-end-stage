@@ -30,9 +30,9 @@ class Login extends React.Component {
     render() {
       const urlObject = {currentUrl:'/login'}
       return (
-        <Layout data={urlObject}>
+        <div>
         <NormalLoginForm />
-        </Layout>
+        </div>
       )
     }
   }

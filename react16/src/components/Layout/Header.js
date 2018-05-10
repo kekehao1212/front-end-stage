@@ -17,8 +17,11 @@ export default class Header extends Component {
         </div>
         <div className="header-content">
         {
-          data&&data.menus&&data.menus.map((item,index)=>{
-            var classNames = item.url.indexOf(location.pathname)>-1?'active':''
+          data&&data.menuList&&data.menuList.map((item,index)=>{
+            if(!item.url||!item.name){
+              return
+            }
+            var classNames = item.id==data.currentUrlId?'active':'' ///item.url.indexOf(location.pathname)>-1?'active':''
             return (
               <a href="javascript:void()" 
               className={classNames} 

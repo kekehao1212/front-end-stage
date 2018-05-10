@@ -12,20 +12,33 @@ import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as AppActions from '../actions/AppActions'
+import Layout from 'COMPONENTS/Layout'
+import * as IndexService from 'SERVICES/index'
 
 class App extends Component {
   constructor(props) {
     super(props)
+    const {actions,stores} = this.props
+    this.actions = actions
+    this.getMenuList = IndexService.getMenuList.bind(this)
+  }
+  componentWillMount(){
+    this.getMenuList()
   }
   componentDidMount() {
+  
   }
   render() {
-    const { children, stores, actions, location } = this.props
-    var appStores = stores.appReducers
+    const { children, stores} = this.props
+    var data ={
+      userName:stores.appReducers.userInfo.pin,
+      menuList:stores.appReducers.menuList,
+      currentUrlId:'10'
+    }
     return (
-      <div >
+      <Layout data={data}>
         {children}
-      </div>
+      </Layout>
     )
   }
 }

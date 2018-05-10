@@ -27,13 +27,13 @@ class Test extends Component {
   render() {
     const urlObject = {currentUrl:'/test'}
     return (
-      <Layout data={urlObject}>
+      <div>
         Test TestTestTestTest
       <Link to='/test' > test</Link>
        <Link to='/404'>404</Link>
        <Link to='/home' >home</Link>
          <Button>Hello world! test</Button>
-      </Layout>
+      </div>
     )
   }
 }

@@ -3,7 +3,7 @@
 import NODE_ENV from './ENV'
 export const DEBUG = NODE_ENV === 'development'
 // MOCK：本地mock服务, PROXY代理到项目服务器：
-export var PROXY_ENV = "MOCK"
+export var PROXY_ENV = "PROXY"
 PROXY_ENV = DEBUG?PROXY_ENV:'PROD'
 export const SERVER_DOMAIN =  {
 	WORKFLOW:DEBUG?'':'http://plat-gw.jd.com',
@@ -15,7 +15,8 @@ export const PROXY_API =  {
 	PROD:'', 
 }
 export const PROXY_URL =  {
-	workflow: SERVER_DOMAIN.WORKFLOW + PROXY_API[PROXY_ENV] + '/workflow/workflowHome'
+	workflow: SERVER_DOMAIN.WORKFLOW + PROXY_API[PROXY_ENV] + '/workflow/workflowHome',
+	menu: SERVER_DOMAIN.WORKFLOW + PROXY_API[PROXY_ENV] + '/workflow/menu'
 }
 export const SERVER_URL = '/api'
 export const BASE = '/'
@@ -41,6 +42,9 @@ const LOGO_BASE_MAP =  {
 }
 export const LOGO_BASE = LOGO_BASE_MAP[NODE_ENV]
 export const TEST = 'TEST'
+
+// appaction 
+export const GET_MENU_LIST = 'GET_MENU_LIST'
 
 
 
