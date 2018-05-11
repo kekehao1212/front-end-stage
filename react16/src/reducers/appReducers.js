@@ -6,6 +6,10 @@ const initialState = {
     pin:''
   },
   menuList:[],
+  currentMenu:{
+    id:'10',
+    subId:'0'
+  },
   trace: {
     text: '',
     isShow: false
@@ -27,6 +31,13 @@ export default function appReducers(state = initialState, action) {
       }
       return merge({}, state, s)
 
+    case AppConst.SET_CURRENT_MENU:
+      var s = {
+        currentMenu:{
+          id:action.data
+        }
+      }
+      return merge({}, state, s)
     case AppConst.TEST:
       var s = {
         failure: {

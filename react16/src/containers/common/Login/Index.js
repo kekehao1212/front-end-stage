@@ -15,6 +15,8 @@ import { Link } from 'react-router'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import NormalLoginForm from './_components/NormalLoginForm'
 import Layout from 'COMPONENTS/Layout'
+import * as AppActions from 'ACTIONS/AppActions'
+
 const FormItem = Form.Item;
 
 //const WrappedNormalLoginForm = Form.create()(NormalLoginForm);
@@ -22,13 +24,15 @@ const FormItem = Form.Item;
 class Login extends React.Component {
     constructor(props, context) {
     super(props, context)
+    const { actions } = this.props
+    this.actions = actions
     }
     componentDidMount(){
         document.title = 'Login'
+        this.actions.SET_CURRENT_MENU('18')
     }
 
     render() {
-      const urlObject = {currentUrl:'/login'}
       return (
         <div>
         <NormalLoginForm />
@@ -49,6 +53,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(AppActions, dispatch),
   }
 }
 

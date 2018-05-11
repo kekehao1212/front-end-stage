@@ -27,6 +27,8 @@ export default class Header extends Component {
               className={classNames} 
               key={index}
               onClick={(()=>{
+                location = item.url
+                return
                 if(item&&(item.url.indexOf('http://')==-1||item.url.indexOf('https://')==-1)){
                   browserHistory.push({pathname:item.url})
                 }else{

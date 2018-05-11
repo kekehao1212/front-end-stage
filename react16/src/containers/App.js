@@ -33,7 +33,8 @@ class App extends Component {
     var data ={
       userName:stores.appReducers.userInfo.pin,
       menuList:stores.appReducers.menuList,
-      currentUrlId:'10'
+      currentUrlId:stores.appReducers.currentMenu.id,
+      hideNavList:['/pages/login','/pages/register']
     }
     return (
       <Layout data={data}>

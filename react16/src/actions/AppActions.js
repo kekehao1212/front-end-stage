@@ -21,3 +21,10 @@ export function GET_MENU_LIST(data){
 		data:data
 	}
 }
+
+export function SET_CURRENT_MENU(data){
+	return {
+		type: AppConst.SET_CURRENT_MENU,
+		data:data
+	}
+}

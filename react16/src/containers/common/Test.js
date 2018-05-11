@@ -13,25 +13,28 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd';
 import { Link } from 'react-router'
+import * as AppActions from 'ACTIONS/AppActions'
 import * as AppConst from '../../constants/AppConst'
 import Layout from 'COMPONENTS/Layout'
 
 class Test extends Component {
   constructor(props, context) {
     super(props, context)
+    const { actions } = this.props
+    this.actions = actions
   }
   componentDidMount(){
     document.title = 'Test'
+    this.actions.SET_CURRENT_MENU('10')
   }
   
   render() {
-    const urlObject = {currentUrl:'/test'}
     return (
       <div>
         Test TestTestTestTest
-      <Link to='/test' > test</Link>
-       <Link to='/404'>404</Link>
-       <Link to='/home' >home</Link>
+      <Link to='/pages/test' > test</Link>
+       <Link to='/pages/404'>404</Link>
+       <Link to='/pages/home' >home</Link>
          <Button>Hello world! test</Button>
       </div>
     )
@@ -51,6 +54,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(AppActions, dispatch),
   }
 }
 

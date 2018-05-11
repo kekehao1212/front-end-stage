@@ -6,8 +6,8 @@
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import {browserHistory} from 'react-router';
-import * as AppActions from '../../actions/AppActions'
+import {locationHref} from 'MODULES/util';
+import * as AppActions from 'ACTIONS/AppActions'
 import { Button , Spin, Icon ,Popconfirm,Switch,message} from 'antd';
 import * as AppConst from '../../constants/AppConst'
 import { Link } from 'react-router'
@@ -25,13 +25,9 @@ class Home extends Component {
   componentDidMount(){
     document.title = 'home'
     const { actions } = this.props
-    //actions.TEST()
-    testResult()
-    var a = fetchAsyncGet('/myapi?002')
-    a.then((r)=>{
-        console.log(r)
-    })
+    this.actions = actions
     IndexService.getWorkflow()
+    this.actions.SET_CURRENT_MENU('10')
   }
   changeCondition =(value)=>{
     this.setState({ condition: value });
@@ -59,22 +55,21 @@ class Home extends Component {
   }
   render() {
     const antIcon = <Icon type="loading" style={{ fontSize: 24 }} spin />;
-    const urlObject = {currentUrl:'/home'}
     return (
       <div>
-      <Link to='/demo' > Demo </Link>
+      <Link to='/pages/demo' > Demo </Link>
        <br/>
-       <Link to='/test' > test </Link>
+       <Link to='/pages/test' > test </Link>
        <br/>
-       <Link to='/404'>404</Link>
+       <Link to='/pages/404'>404</Link>
        <br/>
-       <Link to='/login'>login</Link>
+       <Link to='/pages/login'>login</Link>
        <br/>
-       <Link to='/register'>register</Link>
+       <Link to='/pages/register'>register</Link>
        <br/>
        <Button icon='search' onClick={()=>{
          IndexService.getWorkflow()
-         browserHistory.push({pathname:'/demo'})
+         locationHref('/pages/demo')
        }}>home</Button>
         <br/>
 

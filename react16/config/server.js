@@ -95,7 +95,7 @@ app.listen(port, function (error) {
   if (error) {
     console.error(error)
   } else {
-    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
-    cp.exec('open http://localhost:9000/home')
+    console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/pages/ in your browser.", port, port)
+    cp.exec('open http://localhost:9000/pages/home')
   }
 })

@@ -1,9 +1,8 @@
 import React from 'react'
 import { Route,IndexRoute,browserHistory } from 'react-router'
 import App from '../containers/App'
-import * as AppConst from '../constants/AppConst'
-import {fetchGet} from '../modules/fetch'
 import Cookies from 'js-cookie'
+import * as AppConst from 'CONSTANTS/AppConst'
 
 function validLogin(location, callback){
   if (!Cookies.get('sso.jd.com') && location.pathname !== '/login') { // 判断是否已经登录且前往的页面不是登录页
@@ -54,16 +53,18 @@ const demo = (location, callback) => {
   }, 'demo')
 }
 
-let base = AppConst.BASE
+// 页面路由访问路径
+const base = AppConst.ROUTE_PATH
    
 export default (
-  <Route path={base} component={App} >
+  <Route path={'/'} component={App} >
     <IndexRoute getComponent={demo} /> 
-    <Route path={base+"Home"} getComponent={home} onEnter={(nextState, replaceState)=>{}} /> 
-    <Route path={base+"test"} getComponent={test}  />
-    <Route path={base+"login"} getComponent={login}  />
-    <Route path={base+"register"} getComponent={register}  />
-    <Route path={base+"demo"} getComponent={demo}  onLeave={(nextState, replaceStatea)=>{}}/> 
+    <Route path={base } getComponent={demo}  onLeave={(nextState, replaceStatea)=>{}}/> 
+    <Route path={base + "/Home"} getComponent={home} onEnter={(nextState, replaceState)=>{}} /> 
+    <Route path={base + "/test"} getComponent={test}  />
+    <Route path={base + "/login"} getComponent={login}  />
+    <Route path={base + "/register"} getComponent={register}  />
+    <Route path={base + "/demo"} getComponent={demo}  onLeave={(nextState, replaceStatea)=>{}}/> 
     <Route path={"*"} getComponent={com404} />
   </Route>
 )

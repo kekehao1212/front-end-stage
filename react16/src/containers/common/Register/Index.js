@@ -15,6 +15,7 @@ import { Link } from 'react-router'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import RegistrationForm from './_components/RegistrationForm'
 import Layout from 'COMPONENTS/Layout'
+import * as AppActions from 'ACTIONS/AppActions'
 
 const FormItem = Form.Item;
 
@@ -23,13 +24,16 @@ const FormItem = Form.Item;
 class Register extends React.Component {
     constructor(props, context) {
     super(props, context)
+    const { actions } = this.props
+    this.actions = actions
     }
     componentDidMount(){
         document.title = 'Register'
+        this.actions.SET_CURRENT_MENU('8')
     }
 
     render() {
-      const urlObject = {currentUrl:'/register'}
+
       return (
         <div>
         <RegistrationForm />
@@ -50,6 +54,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(AppActions, dispatch),
   }
 }
 

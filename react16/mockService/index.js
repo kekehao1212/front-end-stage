@@ -1,6 +1,8 @@
 var demo2 = require('./demo2.js')
 var demo1 =  require('./demo1.js')
 var testapi =  require('./testapi.js')
+var menu =  require('./menu.js')
+
 var workflowHome =  {
     api:'/workflow/workflowHome',
     response:{
@@ -10,10 +12,10 @@ var workflowHome =  {
         },
     }
 }
-var data = [demo2,demo1,testapi,workflowHome]
+var data = [demo2,demo1,testapi,workflowHome,menu]
 
 function getApiData(api){
-    console.log('real request api : ' + api)
+    //console.log('real request api : ' + api)
     var r = data.filter((item)=>{
        if(api.indexOf(item.api)>-1){
            return true

@@ -6,7 +6,7 @@ module.exports = {
         changeOrigin: true,
         withCredentials: true,
         pathRewrite: function (path, req) { 
-            console.log('current request api : ' + path)
+            //console.log('current request api : ' + path)
             return path.replace('/proxy-api', '') 
         }
     },
@@ -16,7 +16,7 @@ module.exports = {
         changeOrigin: true,
         withCredentials: true,
         pathRewrite: function (path, req) { 
-            console.log('current request api : ' + path)
+            //console.log('current request api : ' + path)
             return path.replace('/proxy-api', '') 
         }
     },
@@ -24,7 +24,7 @@ module.exports = {
         target: 'http://localhost:9000',
         changeOrigin: true,
         pathRewrite: function (path, req) { 
-            console.log('current request api : ' + path)
+            //console.log('current request api : ' + path)
             return path.replace('/mock-api', '/api') 
         }
     },
@@ -32,7 +32,7 @@ module.exports = {
         target: 'https://randomuser.me',
         changeOrigin: true,
         pathRewrite: function (path, req) { 
-            console.log('current request api : ' + path)
+            //console.log('current request api : ' + path)
             return path.replace('/rand-api', '/api') 
         }
     },

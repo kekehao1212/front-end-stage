@@ -14,10 +14,13 @@ import { connect } from 'react-redux'
 import { Button ,Input} from 'antd';
 import { Link } from 'react-router'
 import Layout from 'COMPONENTS/Layout'
+import * as AppActions from 'ACTIONS/AppActions'
 
 class Com404 extends Component {
   constructor(props, context) {
     super(props, context)
+    const { actions } = this.props
+    this.actions = actions
   }
   componentDidMount(){
     document.title = '404 not found'
@@ -25,10 +28,11 @@ class Com404 extends Component {
       code: 404,
       msg:'页面不存在:' + document.referrer
     }
+    this.actions.SET_CURRENT_MENU('9')
   }
   
   render() {
-    const urlObject = {currentUrl:'/404'}
+    const urlObject = {currentUrl:'/pages/404'}
     return (
       <div>
         <div className="com404" style={{marginTop:60+ 'px'}}>404 , not found</div>
@@ -37,9 +41,9 @@ class Com404 extends Component {
             1233134
           </div>
         </div>
-      <Link to='/test' > test</Link>
-       <Link to='/404'>404</Link>
-       <Link to='/home' >home</Link>
+      <Link to='/pages/test' > test</Link>
+       <Link to='/pages/404'>404</Link>
+       <Link to='/pages/home' >home</Link>
         <Button>Hello world!</Button>
         <Input />
       </div>
@@ -60,6 +64,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    actions: bindActionCreators(AppActions, dispatch),
   }
 }
 

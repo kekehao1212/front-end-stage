@@ -12,6 +12,7 @@ const publicPath = '/assets/' + publishVersion + '/'//http:localhost
 var PATHS = require('./PATHS');
 var theme = require('./antd-theme.js')
 theme = JSON.stringify(theme.PROD)
+var htmlplugins = []// generateHtml()
 
 module.exports = {
   entry: {
@@ -65,6 +66,7 @@ module.exports = {
         collapseWhitespace: false,
       },
     }),
+    ...htmlplugins
   ],
   module: {
     noParse: /node_modules\/localforage\/dist\/localforage.js/,
@@ -141,3 +143,20 @@ module.exports = {
   },
 }
 
+//utils-function 生成html页面
+// function generateHtml(){
+//   var pages = ['home.html','test.html'];
+//   var plugins = []
+//   for (var index in pages) {
+//     var conf = {
+//         template: PATHS.SRC.join(`index_prod.html`),
+//         filename:  '../../'+ pages[index],
+//         minify: {
+//           collapseWhitespace: false,
+//         },
+//       };
+//       // 需要生成几个 html 文件，就配置几个 HtmlWebpackPlugin 对象
+//       plugins.push(new HtmlWebpackPlugin(conf));
+//   }
+//   return plugins
+// }
